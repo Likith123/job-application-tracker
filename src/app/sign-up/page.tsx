@@ -28,10 +28,8 @@ export default function SignUp() {
     try {
       const result = await signUp.email({
         name: formData.firstName + " " + formData.lastName,
-        // user: {
-        //   firstName: formData.firstName,
-        //   lastName: formData.lastName,
-        // },
+        firstName: formData.firstName,
+        lastName: formData.lastName,
         email: formData.email,
         password: formData.password,
       });

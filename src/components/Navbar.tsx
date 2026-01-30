@@ -25,7 +25,8 @@ export default function Navbar() {
             <DropdownMenuTrigger>
               <Avatar className="w-8 h-8 bg-white text-black">
                 <AvatarFallback className="font-bold">
-                  {session.user.name[0].toUpperCase()}
+                  {session.user.firstName[0].toUpperCase()}
+                  {session.user.lastName[0].toUpperCase()}
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
