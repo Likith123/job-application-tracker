@@ -23,7 +23,7 @@ export default function Navbar() {
         {session?.user ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <Avatar className="w-8 h-8 bg-foreground text-background">
+              <Avatar className="w-8 h-8 bg-primary text-primary-foreground">
                 <AvatarFallback className="font-bold">
                   {session.user.firstName?.[0]?.toUpperCase() ?? ""}
                   {session.user.lastName?.[0]?.toUpperCase() ?? ""}
@@ -66,7 +66,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/sign-up"
-              className="px-4 py-1 bg-primary/90 text-foreground text-semibold text-center rounded-md hover:bg-primary"
+              className="px-4 py-1 bg-primary/90 text-primary-foreground text-semibold text-center rounded-md hover:bg-primary"
             >
               Sign Up
             </Link>

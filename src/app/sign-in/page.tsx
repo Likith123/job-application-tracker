@@ -80,7 +80,7 @@ export default function SignIn() {
             <div className="mt-4">
               <Button
                 type="submit"
-                className="w-full bg-primary text-foreground rounded-md hover:bg-primary"
+                className="w-full bg-primary text-primary-foreground rounded-md hover:bg-primary"
               >
                 Sign In
               </Button>

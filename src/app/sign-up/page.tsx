@@ -130,7 +130,7 @@ export default function SignUp() {
             <div className="mt-4">
               <Button
                 type="submit"
-                className="w-full bg-primary/90 text-foreground rounded-md hover:bg-primary"
+                className="w-full bg-primary/90 text-primary-foreground rounded-md hover:bg-primary"
               >
                 Sign Up
               </Button>

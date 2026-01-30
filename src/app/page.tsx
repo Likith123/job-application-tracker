@@ -19,7 +19,7 @@ export default function Home() {
         <Link href="/sign-up">
           <Button
             size="lg"
-            className="bg-primary/90 text-foreground rounded-md hover:bg-primary"
+            className="bg-primary/90 text-primary-foreground rounded-md hover:bg-primary"
           >
             Start for free <ArrowRight className="ml-2" />
           </Button>
