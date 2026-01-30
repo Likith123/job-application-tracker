@@ -80,7 +80,7 @@ export default function SignIn() {
             <div className="mt-4">
               <Button
                 type="submit"
-                className="w-full bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                className="w-full bg-primary text-foreground rounded-md hover:bg-primary"
               >
                 Sign In
               </Button>
@@ -90,7 +90,7 @@ export default function SignIn() {
         <hr className="my-4" />
         <p className="flex gap-3 justify-center items-center">
           Don&apos;t have an account?{" "}
-          <Link href="/sign-up" className="text-blue-500 hover:underline">
+          <Link href="/sign-up" className="text-primary hover:underline">
             Sign up
           </Link>
         </p>

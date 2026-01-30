@@ -8,7 +8,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto text-center space-y-8">
         <h1 className="text-4xl font-bold">
           Welcome to the{" "}
-          <span className="text-blue-500 italic">Job Application Tracker</span>
+          <span className="text-primary italic">Job Application Tracker</span>
         </h1>
         <p className="text-lg text-foreground/75">
           A better way to track your job applications at a single place
@@ -19,7 +19,7 @@ export default function Home() {
         <Link href="/sign-up">
           <Button
             size="lg"
-            className="bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            className="bg-primary/90 text-foreground rounded-md hover:bg-primary"
           >
             Start for free <ArrowRight className="ml-2" />
           </Button>

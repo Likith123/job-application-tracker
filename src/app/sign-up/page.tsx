@@ -14,9 +14,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+type SignUpFormData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+};
+
 export default function SignUp() {
   const router = useRouter();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<SignUpFormData>({
     firstName: "",
     lastName: "",
     email: "",
@@ -123,7 +130,7 @@ export default function SignUp() {
             <div className="mt-4">
               <Button
                 type="submit"
-                className="w-full bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                className="w-full bg-primary/90 text-foreground rounded-md hover:bg-primary"
               >
                 Sign Up
               </Button>
@@ -133,7 +140,7 @@ export default function SignUp() {
         <hr className="my-4" />
         <p className="flex gap-3 justify-center items-center">
           Already have an account?{" "}
-          <Link href="/sign-in" className="text-blue-500 hover:underline">
+          <Link href="/sign-in" className="text-primary hover:underline">
             Sign in
           </Link>
         </p>

@@ -16,17 +16,17 @@ export default function Navbar() {
   const router = useRouter();
   return (
     <nav className="sticky top-0 h-16 flex justify-between items-center px-8 md:px-16 py-4 border-b border-gray-700">
-      <div className="text-2xl font-bold text-blue-500">
+      <div className="text-2xl font-bold text-primary">
         <Link href="/">Tracker</Link>
       </div>
       <div className="flex items-center justify-center gap-6">
         {session?.user ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <Avatar className="w-8 h-8 bg-white text-black">
+              <Avatar className="w-8 h-8 bg-foreground text-background">
                 <AvatarFallback className="font-bold">
-                  {session.user.firstName[0].toUpperCase()}
-                  {session.user.lastName[0].toUpperCase()}
+                  {session.user.firstName?.[0]?.toUpperCase() ?? ""}
+                  {session.user.lastName?.[0]?.toUpperCase() ?? ""}
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
@@ -58,12 +58,15 @@ export default function Navbar() {
           </DropdownMenu>
         ) : (
           <>
-            <Link href="/sign-in" className="text-blue-400 hover:text-blue-500">
+            <Link
+              href="/sign-in"
+              className="text-semibold text-primary/90 hover:text-primary"
+            >
               Sign In
             </Link>
             <Link
               href="/sign-up"
-              className="px-4 py-1 bg-blue-500 text-white rounded-md"
+              className="px-4 py-1 bg-primary/90 text-foreground text-semibold text-center rounded-md hover:bg-primary"
             >
               Sign Up
             </Link>

@@ -1,5 +1,5 @@
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div className="container max-w-7xl mx-auto">Dashboard</div>
   )
 }
