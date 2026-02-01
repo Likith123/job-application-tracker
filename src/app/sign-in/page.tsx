@@ -49,7 +49,7 @@ export default function SignIn() {
         <CardContent>
           <form onSubmit={handleSignIn} className="flex flex-col gap-4">
             {error && (
-              <div className="bg-destructive/10 text-destructive text-sm rounded-md">
+              <div className="bg-destructive/10 text-destructive text-sm rounded-md p-2">
                 {error}
               </div>
             )}
