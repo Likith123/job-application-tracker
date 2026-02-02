@@ -1,3 +1,12 @@
+-- CreateEnum
+CREATE TYPE "JobStatus" AS ENUM ('SAVED', 'APPLIED', 'SUCCESS', 'REJECTED');
+
+-- CreateEnum
+CREATE TYPE "JobType" AS ENUM ('FULL_TIME', 'PART_TIME', 'INTERN', 'CONTRACT', 'FREELANCE');
+
+-- CreateEnum
+CREATE TYPE "JobMode" AS ENUM ('REMOTE', 'ON_SITE', 'HYBRID');
+
 -- CreateTable
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
@@ -58,6 +67,26 @@ CREATE TABLE "verification" (
     CONSTRAINT "verification_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "job" (
+    "id" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
+    "company" TEXT NOT NULL,
+    "mode" "JobMode" NOT NULL,
+    "location" TEXT,
+    "source" TEXT,
+    "jobLink" TEXT NOT NULL,
+    "jobType" "JobType" NOT NULL,
+    "status" "JobStatus" NOT NULL,
+    "notes" TEXT,
+    "appliedAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
+
+    CONSTRAINT "job_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
@@ -78,3 +107,6 @@ ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "account" ADD CONSTRAINT "account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "job" ADD CONSTRAINT "job_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
