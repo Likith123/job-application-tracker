@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getSession } from "./auth";
 type Handler = (req: Request, user: { id: string }) => Promise<unknown>;
 
-export async function requireUser(req: Request) {
+export async function requireUser() {
   const session = await getSession();
   if (!session?.user) {
     throw new Error("UNAUTHORIZED");
@@ -13,7 +13,7 @@ export async function requireUser(req: Request) {
 export function withAuth(handler: Handler) {
   return async (req: Request) => {
     try {
-      const user = await requireUser(req);
+      const user = await requireUser();
       const result = await handler(req, user);
       return NextResponse.json(result);
     } catch (err) {
