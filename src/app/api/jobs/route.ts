@@ -1,35 +1,22 @@
 import prisma from "@/db/prisma";
 import { JobStatus, JobType } from "@/generated/prisma/enums";
-import { getSession } from "@/lib/auth/auth";
-import { NextResponse } from "next/server";
+import { withAuth } from "@/lib/auth/auth-helper";
 
-export async function GET(req: Request) {
-  const session = await getSession();
-  if (!session?.user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
+export const GET = withAuth(async (req: Request, user: { id: string }) => {
   const { searchParams } = new URL(req.url);
-  const status = searchParams.get("status") as JobStatus | null;
-  const data = await prisma.job.findMany({
+  const status = searchParams.get("status")?.toUpperCase() as JobStatus | null;
+  return await prisma.job.findMany({
     where: {
-      userId: session.user.id,
+      userId: user.id,
       status: status ?? undefined,
     },
     orderBy: { createdAt: "desc" },
   });
+});
 
-  return NextResponse.json(data);
-}
-
-export async function POST(req: Request) {
-  const session = await getSession();
-  if (!session?.user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
+export const POST = withAuth(async (req: Request, user: { id: string }) => {
   const body = await req.json();
-  const newJob = await prisma.job.create({
+  return await prisma.job.create({
     data: {
       company: body.company,
       role: body.role,
@@ -41,8 +28,7 @@ export async function POST(req: Request) {
       source: body.source,
       notes: body.notes,
       appliedAt: body.appliedAt ? new Date(body.appliedAt) : null,
-      userId: session.user.id,
+      userId: user.id,
     },
   });
-  return NextResponse.json(newJob, { status: 200 });
-}
+});
