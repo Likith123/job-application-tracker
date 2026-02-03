@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import FormButton from "@/components/FormButton";
 import {
   Card,
   CardContent,
@@ -78,12 +78,7 @@ export default function SignIn() {
               />
             </div>
             <div className="mt-4">
-              <Button
-                type="submit"
-                className="w-full bg-primary text-primary-foreground rounded-md hover:bg-primary"
-              >
-                Sign In
-              </Button>
+              <FormButton text="Sign In" />
             </div>
           </form>
         </CardContent>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import FormButton from "@/components/FormButton";
 import {
   Card,
   CardContent,
@@ -30,13 +30,14 @@ export default function SignUp() {
     password: "",
   });
   const [error, setError] = useState("");
+  
   async function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
       const result = await signUp.email({
-        name: formData.firstName + " " + formData.lastName,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+        name: formData.firstName.trim() + " " + formData.lastName.trim(),
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
         email: formData.email,
         password: formData.password,
       });
@@ -128,12 +129,7 @@ export default function SignUp() {
               />
             </div> */}
             <div className="mt-4">
-              <Button
-                type="submit"
-                className="w-full bg-primary/90 text-primary-foreground rounded-md hover:bg-primary"
-              >
-                Sign Up
-              </Button>
+              <FormButton text="Sign Up" />
             </div>
           </form>
         </CardContent>
