@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/table";
 import { data, jobTypeOptions, statusOptions } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
-import { Arrow } from "@radix-ui/react-dropdown-menu";
 import {
   createColumnHelper,
   flexRender,
@@ -24,6 +23,7 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { useState } from "react";
+import AddJob from "./AddJob";
 import SearchBar from "./SearchBar";
 import SelectComponent from "./Select";
 
@@ -87,25 +87,34 @@ export default function TableComponent() {
   });
   return (
     <div className="p-4 flex flex-col w-full gap-4">
-      <div className="flex gap-4">
-        <SearchBar
-          value={globalFilter ?? ""}
-          onChange={(value) => setGlobalFilter(String(value))}
-          placeholder="Search all columns..."
-          className="p-2 border border-gray-300 rounded-md w-full max-w-sm"
-        />
-        <SelectComponent
-          state={jobType}
-          stateFn={setJobType}
-          label="Job Type"
-          options={jobTypeOptions}
-        />
-        <SelectComponent
-          state={jobMode}
-          stateFn={setJobMode}
-          label="Job Mode"
-          options={statusOptions}
-        />
+      <div className="flex justify-between items-center">
+        <div className="w-full flex gap-4 items-center">
+          <SearchBar
+            value={globalFilter ?? ""}
+            onChange={(value) => setGlobalFilter(String(value))}
+            placeholder="Search all columns..."
+            className="px-2 py-1.5 border border-gray-300 rounded-md w-full max-w-60 active:ring-0"
+          />
+          <SelectComponent
+            state={jobType}
+            stateFn={setJobType}
+            label="Job Type"
+            options={jobTypeOptions}
+            popup={false}
+            id="jobType"
+          />
+          <SelectComponent
+            state={jobMode}
+            stateFn={setJobMode}
+            label="Status"
+            options={statusOptions}
+            popup={false}
+            id="status"
+          />
+        </div>
+        <div>
+          <AddJob />
+        </div>
       </div>
       <Table>
         <TableCaption>

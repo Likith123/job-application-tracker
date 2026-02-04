@@ -13,15 +13,23 @@ export default function SelectComponent({
   stateFn,
   label,
   options,
+  popup,
+  id,
 }: {
   state: string;
   stateFn: (value: string) => void;
   label: string;
   options: { label: string; value: string }[];
+  popup: boolean;
+  id: string;
 }) {
   return (
     <Select value={state} onValueChange={stateFn}>
-      <SelectTrigger className="p-2 border border-gray-300 rounded-md w-full max-w-60">
+      <SelectTrigger
+        className={`p-2 border border-gray-300 rounded-md w-full${popup ? "" : " max-w-60"}`}
+        id={id}
+        name={id}
+      >
         <SelectValue placeholder={label} />
       </SelectTrigger>
       <SelectContent>

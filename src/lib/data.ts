@@ -100,4 +100,17 @@ const jobTypeOptions = [
   { label: "Freelance", value: "FREELANCE" },
 ];
 
-export { data, jobTypeOptions, SignedInNavLinks, statusOptions };
+const jobModeOptions = [
+  { label: "All", value: "ALL" },
+  { label: "Onsite", value: "ON_SITE" },
+  { label: "Hybrid", value: "HYBRID" },
+  { label: "Remote", value: "REMOTE" },
+];
+
+export {
+  data,
+  jobModeOptions,
+  jobTypeOptions,
+  SignedInNavLinks,
+  statusOptions,
+};

@@ -1,5 +1,8 @@
 "use client";
+import JobsSectionWithStatus from "@/components/JobsSectionWithStatus";
 import TableComponent from "@/components/Table";
+import { SignedInNavLinks } from "@/lib/data";
+import { NavLinkType } from "@/lib/types";
 // import { SignedInNavLinks } from "@/lib/data";
 // import JobsSectionWithStatus from "@/components/JobsSectionWithStatus";
 
@@ -16,7 +19,9 @@ export default function Dashboard() {
       </header>
 
       {/* Criteria */}
-
+      {/* {SignedInNavLinks.map((navLinkObj: NavLinkType) => (
+        <JobsSectionWithStatus key={navLinkObj.name} {...navLinkObj} />
+      ))} */}
       <TableComponent />
     </section>
   );

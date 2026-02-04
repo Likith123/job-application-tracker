@@ -10,16 +10,10 @@ import {
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { signUp } from "@/lib/auth/auth-client";
+import { SignUpFormData } from "@/lib/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
-type SignUpFormData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-};
 
 export default function SignUp() {
   const router = useRouter();
