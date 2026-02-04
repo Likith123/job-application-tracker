@@ -1,3 +1,5 @@
+import { JobMode, JobStatus, JobType } from "@/generated/prisma/enums";
+
 export type SignInFormData = {
   email: string;
   password: string;
@@ -19,13 +21,17 @@ export type NavLinkType = {
 
 export type JobDataType = {
   id: string;
-  company: string;
   role: string;
-  status: string;
-  jobType: string;
-  mode: string;
-  location?: string;
-  source?: string;
-  appliedAt?: string;   // ISO string for UI
-  createdAt: string;    // ISO string
+  company: string;
+  mode: JobMode;
+  location?: string | null;
+  source?: string | null;
+  jobLink: string;
+  jobType: JobType;
+  status: JobStatus;
+  notes?: string | null;
+  appliedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  userId: string;
 };

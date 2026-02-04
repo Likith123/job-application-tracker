@@ -13,31 +13,68 @@ import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { jobModeOptions, jobTypeOptions, statusOptions } from "@/lib/data";
-import { Plus } from "lucide-react";
+import { Edit, Plus, Trash } from "lucide-react";
 import { useState } from "react";
 import SelectComponent from "./Select";
+import { JobDataType } from "@/lib/types";
 
-export default function AddJob() {
+const actionConfig = {
+  add: {
+    label: "Add Job Application",
+    icon: Plus,
+    variant: "default" as const,
+    showLabel: true,
+    className: "",
+    description:
+      "Add a new job you've applied to or plan to apply for. Track its status, type, and important details in one place.",
+    buttonText: "Save Changes",
+  },
+  edit: {
+    label: "Edit Job",
+    icon: Edit,
+    variant: "ghost" as const,
+    showLabel: false,
+    className: "",
+    description:
+      "Update job details to kepp your application progress accurate",
+    buttonText: "Update Changes",
+  },
+  delete: {
+    label: "Delete Job",
+    icon: Trash,
+    variant: "ghost" as const,
+    showLabel: false,
+    className: "text-destructive/60 hover:text-destructive",
+    description:
+      "Are you sure you want to delete this job? This action cannot be undone.",
+    buttonText: "Delete Job",
+  },
+};
+
+export default function Modal({ mode, job }: { mode: keyof typeof actionConfig, job?: JobDataType }) {
   const [jobType, setJobType] = useState("ALL");
   const [jobMode, setJobMode] = useState("ALL");
   const [status, setStatus] = useState("ALL");
+
+  const config = actionConfig[mode];
+  const Icon = config.icon;
+
   return (
     <Dialog>
       <form>
         <DialogTrigger asChild>
-          <Button className="p-2 flex items-center">
-            <Plus className="mr-1" />
-            Add Job Application
+          <Button
+            className={`p-2 flex items-center ${config.className ?? ""}`}
+            variant={config.variant}
+          >
+            <Icon className={config.showLabel ? "mr-1" : ""} />
+            {config.showLabel && config.label}
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-sm md:max-w-xl">
           <DialogHeader>
-            <DialogTitle>Add Job</DialogTitle>
-            <DialogDescription>
-              {/* Add some description for adding a job */}
-              Add a new job you&apos;ve applied to or plan to apply for. Track
-              its status, type, and important details in one place.
-            </DialogDescription>
+            <DialogTitle className="capitalize">{mode} Job</DialogTitle>
+            <DialogDescription>{config.description}</DialogDescription>
           </DialogHeader>
           <FieldGroup className="flex flex-col gap-4">
             <FieldGroup className="flex flex-row items-center gap-2">
@@ -110,7 +147,16 @@ export default function AddJob() {
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button type="submit">Save changes</Button>
+            <Button
+              type="submit"
+              className={
+                mode === "delete"
+                  ? "bg-destructive hover:bg-destructive/80"
+                  : ""
+              }
+            >
+              {config.buttonText}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </form>

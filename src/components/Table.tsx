@@ -23,7 +23,8 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { useState } from "react";
-import AddJob from "./AddJob";
+import Modal from "./Modal";
+import { RowActions } from "./RowActions";
 import SearchBar from "./SearchBar";
 import SelectComponent from "./Select";
 
@@ -62,6 +63,20 @@ const columns = [
   columnHelper.accessor("appliedAt", {
     header: "Applied At",
     cell: (info) => info.getValue(),
+  }),
+  columnHelper.display({
+    id: "actions",
+    header: "Actions",
+    cell: ({ row }) => {
+      const job = row.original;
+      return (
+        <div className="flex justify-center">
+          <RowActions job={job} />
+        </div>
+      );
+    },
+    size: 40,
+    enableSorting: false,
   }),
 ];
 
@@ -113,7 +128,7 @@ export default function TableComponent() {
           />
         </div>
         <div>
-          <AddJob />
+          <Modal mode="add" />
         </div>
       </div>
       <Table>
@@ -125,13 +140,13 @@ export default function TableComponent() {
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
+                <TableHead key={header.id} className="text-center">
                   {/* ⬇️ this is for sorting the columns */}
                   <div
                     {...{
                       className: header.column.getCanSort()
                         ? "cursor-pointer select-none flex items-center"
-                        : "",
+                        : "flex justify-center",
                       onClick: header.column.getToggleSortingHandler(),
                     }}
                   >
@@ -139,7 +154,9 @@ export default function TableComponent() {
                       header.column.columnDef.header,
                       header.getContext(),
                     )}
-                    <ArrowUpDown className="ml-2" size={14} />
+                    {header.column.getCanSort() && (
+                      <ArrowUpDown className="ml-2 shrink-0" size={14} />
+                    )}
                   </div>
                 </TableHead>
               ))}
