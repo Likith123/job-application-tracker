@@ -1,4 +1,4 @@
-// Reduce colors of navigation links for signed-in users
+import { JobDataType } from "./types";
 
 const SignedInNavLinks = [
   {
@@ -33,4 +33,71 @@ const SignedInNavLinks = [
   },
 ];
 
-export { SignedInNavLinks };
+const data: JobDataType[] = [
+  {
+    id: "job_1",
+    company: "Google",
+    role: "Frontend Engineer",
+    status: "APPLIED",
+    jobType: "FULL_TIME",
+    mode: "REMOTE",
+    location: "Bangalore",
+    source: "LinkedIn",
+    appliedAt: "2026-01-12",
+    createdAt: "2026-01-10",
+  },
+  {
+    id: "job_2",
+    company: "Amazon",
+    role: "Software Engineer",
+    status: "SAVED",
+    jobType: "FULL_TIME",
+    mode: "HYBRID",
+    location: "Hyderabad",
+    source: "Careers Page",
+    createdAt: "2026-01-14",
+  },
+  {
+    id: "job_3",
+    company: "Startup XYZ",
+    role: "React Developer",
+    status: "REJECTED",
+    jobType: "CONTRACT",
+    mode: "REMOTE",
+    source: "Referral",
+    appliedAt: "2026-01-05",
+    createdAt: "2026-01-03",
+  },
+  {
+    id: "job_4",
+    company: "Microsoft",
+    role: "UI Engineer",
+    status: "SUCCESS",
+    jobType: "FULL_TIME",
+    mode: "ONSITE",
+    location: "Bangalore",
+    source: "LinkedIn",
+    appliedAt: "2025-12-20",
+    createdAt: "2025-12-18",
+  },
+];
+
+const statusOptions = [
+  { label: "All", value: "ALL" },
+  { label: "Saved", value: "SAVED" },
+  { label: "Applied", value: "APPLIED" },
+  { label: "Interview", value: "INTERVIEW" },
+  { label: "Offer", value: "OFFER" },
+  { label: "Rejected", value: "REJECTED" },
+];
+
+const jobTypeOptions = [
+  { label: "All", value: "ALL" },
+  { label: "Full Time", value: "FULL_TIME" },
+  { label: "Part Time", value: "PART_TIME" },
+  { label: "Intern", value: "INTERN" },
+  { label: "Contract", value: "CONTRACT" },
+  { label: "Freelance", value: "FREELANCE" },
+];
+
+export { data, jobTypeOptions, SignedInNavLinks, statusOptions };

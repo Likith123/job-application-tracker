@@ -1,4 +1,4 @@
-import { NavLinkType } from "@/app/dashboard/page";
+import { NavLinkType } from "@/lib/types";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
