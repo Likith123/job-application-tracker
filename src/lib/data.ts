@@ -45,6 +45,9 @@ const data: JobDataType[] = [
     source: "LinkedIn",
     appliedAt: "2026-01-12",
     createdAt: "2026-01-10",
+    jobLink: "",
+    updatedAt: "",
+    userId: ""
   },
   {
     id: "job_2",
@@ -56,6 +59,9 @@ const data: JobDataType[] = [
     location: "Hyderabad",
     source: "Careers Page",
     createdAt: "2026-01-14",
+    jobLink: "",
+    updatedAt: "",
+    userId: ""
   },
   {
     id: "job_3",
@@ -67,6 +73,9 @@ const data: JobDataType[] = [
     source: "Referral",
     appliedAt: "2026-01-05",
     createdAt: "2026-01-03",
+    jobLink: "",
+    updatedAt: "",
+    userId: ""
   },
   {
     id: "job_4",
@@ -74,11 +83,14 @@ const data: JobDataType[] = [
     role: "UI Engineer",
     status: "SUCCESS",
     jobType: "FULL_TIME",
-    mode: "ONSITE",
+    mode: "ON_SITE",
     location: "Bangalore",
     source: "LinkedIn",
     appliedAt: "2025-12-20",
     createdAt: "2025-12-18",
+    jobLink: "",
+    updatedAt: "",
+    userId: ""
   },
 ];
 
@@ -87,7 +99,7 @@ const statusOptions = [
   { label: "Saved", value: "SAVED" },
   { label: "Applied", value: "APPLIED" },
   { label: "Interview", value: "INTERVIEW" },
-  { label: "Offer", value: "OFFER" },
+  { label: "Offer", value: "SUCCESS" },
   { label: "Rejected", value: "REJECTED" },
 ];
 

@@ -24,7 +24,13 @@ export default function SelectComponent({
   id: string;
 }) {
   return (
-    <Select value={state} onValueChange={stateFn}>
+    <Select
+      value={state}
+      onValueChange={(value) => {
+        console.log("Select changed:", value);
+        stateFn(value);
+      }}
+    >
       <SelectTrigger
         className={`p-2 border border-gray-300 rounded-md w-full${popup ? "" : " max-w-60"}`}
         id={id}

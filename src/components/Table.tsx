@@ -1,4 +1,3 @@
-"use no memo";
 "use client";
 
 import {
@@ -10,8 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { data, jobTypeOptions, statusOptions } from "@/lib/data";
+import { fetchJobs } from "@/lib/api";
+import { jobTypeOptions, statusOptions } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
+// import { useQuery } from "@tanstack/react-query";
 import {
   createColumnHelper,
   flexRender,
@@ -22,7 +23,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { RowActions } from "./RowActions";
 import SearchBar from "./SearchBar";
@@ -84,7 +85,30 @@ export default function TableComponent() {
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
   const [jobType, setJobType] = useState("ALL");
-  const [jobMode, setJobMode] = useState("ALL");
+  // const [jobMode, setJobMode] = useState("ALL");
+  const [status, setStatus] = useState("ALL");
+  const [data, setData] = useState<JobDataType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  // const { data = [], isLoading, error } = useQuery({
+  //   queryKey: ["jobs", status],
+  //   queryFn: () => fetchJobs(status),
+  //   staleTime: 1000 * 60* 30,
+  // });
+  
+  useEffect(() => {
+    const getJobs = async () => {
+      try {
+        const jobs = await fetchJobs(status.toLocaleLowerCase());
+        setData(jobs);
+      } catch (err) {
+        console.error("Failed to load jobs:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getJobs();
+  }, [status]);
   const table = useReactTable({
     data,
     columns,
@@ -119,8 +143,8 @@ export default function TableComponent() {
             id="jobType"
           />
           <SelectComponent
-            state={jobMode}
-            stateFn={setJobMode}
+            state={status}
+            stateFn={setStatus}
             label="Status"
             options={statusOptions}
             popup={false}
