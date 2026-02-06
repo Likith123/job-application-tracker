@@ -21,14 +21,14 @@ export type NavLinkType = {
 
 export type JobDataType = {
   id: string;
-  role: string;
   company: string;
+  role: string;
+  jobType: JobType;
   mode: JobMode;
+  status: JobStatus;
   location?: string | null;
   source?: string | null;
   jobLink: string;
-  jobType: JobType;
-  status: JobStatus;
   notes?: string | null;
   appliedAt?: string | null;
   createdAt: string;

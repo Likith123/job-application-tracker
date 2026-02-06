@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { getSession } from "./auth";
-type Handler = (req: Request, user: { id: string }) => Promise<unknown>;
+type Handler = (
+  req: Request,
+  user: { id: string },
+  context?: { params?: Record<string, string> },
+) => Promise<unknown>;
 
 export async function requireUser() {
   const session = await getSession();
@@ -10,14 +14,20 @@ export async function requireUser() {
   return session.user;
 }
 
-export function withAuth(handler: Handler) {
-  return async (req: Request) => {
-    try {
-      const user = await requireUser();
-      const result = await handler(req, user);
-      return NextResponse.json(result);
-    } catch (err) {
+type HandlerType<TParams> = (
+  req: Request,
+  user: { id: string },
+  context?: { params?: Promise<TParams> },
+) => Promise<Response>;
+
+export function withAuth<TParams>(handler: HandlerType<TParams>) {
+  return async (req: Request, context: { params: Promise<TParams> }) => {
+    const session = await getSession();
+
+    if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    return handler(req, session.user, context);
   };
 }

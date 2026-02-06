@@ -15,6 +15,7 @@ export default function SelectComponent({
   options,
   popup,
   id,
+  disabled
 }: {
   state: string;
   stateFn: (value: string) => void;
@@ -22,14 +23,15 @@ export default function SelectComponent({
   options: { label: string; value: string }[];
   popup: boolean;
   id: string;
+  disabled: boolean
 }) {
   return (
     <Select
       value={state}
       onValueChange={(value) => {
-        console.log("Select changed:", value);
         stateFn(value);
       }}
+      disabled={disabled}
     >
       <SelectTrigger
         className={`p-2 border border-gray-300 rounded-md w-full${popup ? "" : " max-w-60"}`}

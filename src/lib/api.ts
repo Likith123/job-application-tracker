@@ -9,7 +9,6 @@ export async function fetchJobs(status?: string): Promise<JobDataType[]> {
   if (!res.ok) {
     throw new Error("Failed to fetch jobs");
   }
-  console.log("fetchJobs end", status);
   return res.json();
 }
 
@@ -25,6 +24,34 @@ export async function createJob(job: JobDataType) {
   });
   if (!res.ok) {
     throw new Error("Failed to add a job");
+  }
+  return res.json();
+}
+
+export async function updateJob(id: string, data: JobDataType) {
+  const url = `/api/jobs/${id}`;
+  const res = await fetch(url, {
+    method: "PUT",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to update the job with id: ${id}`);
+  }
+  return res.json();
+}
+
+export async function deleteJob(id: string) {
+  const url = `/api/jobs/${id}`;
+  const res = await fetch(url, {
+    method: "DELETE",
+    credentials: "include",
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to delete the job with id: ${id}`);
   }
   return res.json();
 }

@@ -24,10 +24,10 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { useEffect, useState } from "react";
-import Modal from "./Modal";
 import { RowActions } from "./RowActions";
 import SearchBar from "./SearchBar";
 import SelectComponent from "./Select";
+import ModalForm from "./Modal";
 
 const columnHelper = createColumnHelper<JobDataType>();
 
@@ -81,6 +81,23 @@ const columns = [
   }),
 ];
 
+const emptyJob: JobDataType  = {
+    id: "",
+    company: "",
+    role: "",
+    jobType: "FULL_TIME",
+    mode: "REMOTE",
+    status: "SAVED",
+    location: "",
+    source: "",
+    jobLink: "",
+    notes: "",
+    appliedAt: "",
+    createdAt: "",
+    updatedAt: "",
+    userId: "",
+  }
+
 export default function TableComponent() {
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -89,12 +106,6 @@ export default function TableComponent() {
   const [status, setStatus] = useState("ALL");
   const [data, setData] = useState<JobDataType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  // const { data = [], isLoading, error } = useQuery({
-  //   queryKey: ["jobs", status],
-  //   queryFn: () => fetchJobs(status),
-  //   staleTime: 1000 * 60* 30,
-  // });
-  
   useEffect(() => {
     const getJobs = async () => {
       try {
@@ -141,6 +152,7 @@ export default function TableComponent() {
             options={jobTypeOptions}
             popup={false}
             id="jobType"
+            disabled={false}
           />
           <SelectComponent
             state={status}
@@ -149,10 +161,11 @@ export default function TableComponent() {
             options={statusOptions}
             popup={false}
             id="status"
+            disabled={false}
           />
         </div>
         <div>
-          <Modal mode="add" />
+          <ModalForm mode="add" job={emptyJob}/>
         </div>
       </div>
       <Table>
