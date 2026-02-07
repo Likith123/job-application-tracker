@@ -13,47 +13,18 @@ import {
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import { createJob, deleteJob, updateJob } from "@/lib/api";
-import { jobModeOptions, jobTypeOptions, statusOptions } from "@/lib/data";
+import {
+  actionConfig,
+  jobModeOptions,
+  jobTypeOptions,
+  statusOptions,
+} from "@/lib/data";
 import { JobDataType } from "@/lib/types";
-import { Edit, Plus, Trash } from "lucide-react";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SelectField, TextInputField } from "./FormFields";
 import DatePicker from "./ui/DatePicker";
 import { Textarea } from "./ui/textarea";
-
-const actionConfig = {
-  add: {
-    label: "Add Job Application",
-    icon: Plus,
-    variant: "default" as const,
-    showLabel: true,
-    className: "",
-    description:
-      "Add a new job you've applied to or plan to apply for. Track its status, type, and important details in one place.",
-    buttonText: ["Adding...", "Add Job"],
-  },
-  edit: {
-    label: "Edit Job Application",
-    icon: Edit,
-    variant: "ghost" as const,
-    showLabel: false,
-    className: "",
-    description:
-      "Update job details to keep your application progress accurate",
-    buttonText: ["Updating...", "Update Job"],
-  },
-  delete: {
-    label: "Delete Job Application",
-    icon: Trash,
-    variant: "ghost" as const,
-    showLabel: false,
-    className: "text-destructive/60 hover:text-destructive",
-    description:
-      "Are you sure you want to delete this job? This action cannot be undone.",
-    buttonText: ["Deleting...", "Delete Job"],
-  },
-};
 
 export default function ModalForm({
   mode,

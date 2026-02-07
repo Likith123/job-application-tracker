@@ -1,3 +1,4 @@
+import { Edit, Plus, Trash } from "lucide-react";
 import { JobDataType } from "./types";
 
 const SignedInNavLinks = [
@@ -47,7 +48,7 @@ const data: JobDataType[] = [
     createdAt: "2026-01-10",
     jobLink: "",
     updatedAt: "",
-    userId: ""
+    userId: "",
   },
   {
     id: "job_2",
@@ -61,7 +62,7 @@ const data: JobDataType[] = [
     createdAt: "2026-01-14",
     jobLink: "",
     updatedAt: "",
-    userId: ""
+    userId: "",
   },
   {
     id: "job_3",
@@ -75,7 +76,7 @@ const data: JobDataType[] = [
     createdAt: "2026-01-03",
     jobLink: "",
     updatedAt: "",
-    userId: ""
+    userId: "",
   },
   {
     id: "job_4",
@@ -90,7 +91,7 @@ const data: JobDataType[] = [
     createdAt: "2025-12-18",
     jobLink: "",
     updatedAt: "",
-    userId: ""
+    userId: "",
   },
 ];
 
@@ -119,7 +120,41 @@ const jobModeOptions = [
   { label: "Remote", value: "REMOTE" },
 ];
 
+const actionConfig = {
+  add: {
+    label: "Add Job Application",
+    icon: Plus,
+    variant: "default" as const,
+    showLabel: true,
+    className: "",
+    description:
+      "Add a new job you've applied to or plan to apply for. Track its status, type, and important details in one place.",
+    buttonText: ["Adding...", "Add Job"],
+  },
+  edit: {
+    label: "Edit Job Application",
+    icon: Edit,
+    variant: "ghost" as const,
+    showLabel: false,
+    className: "",
+    description:
+      "Update job details to keep your application progress accurate",
+    buttonText: ["Updating...", "Update Job"],
+  },
+  delete: {
+    label: "Delete Job Application",
+    icon: Trash,
+    variant: "ghost" as const,
+    showLabel: false,
+    className: "text-destructive/60 hover:text-destructive",
+    description:
+      "Are you sure you want to delete this job? This action cannot be undone.",
+    buttonText: ["Deleting...", "Delete Job"],
+  },
+};
+
 export {
+  actionConfig,
   data,
   jobModeOptions,
   jobTypeOptions,
