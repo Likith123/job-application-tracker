@@ -11,7 +11,7 @@ export const GET = withAuth(async (req: Request, user: { id: string }) => {
       userId: user.id,
       status: status ?? undefined,
     },
-    orderBy: { createdAt: "desc" },
+    orderBy: { updatedAt: "desc" },
   });
   return NextResponse.json(jobs);
 });

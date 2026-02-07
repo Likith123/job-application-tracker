@@ -20,6 +20,7 @@ import {
   statusOptions,
 } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SelectField, TextInputField } from "./FormFields";
@@ -173,7 +174,10 @@ export default function ModalForm({
               <Button
                 type="button"
                 variant="outline"
-                className="cursor-pointer"
+                className={cn(
+                  "cursor-pointer",
+                  mode === "delete" && "hover:bg-destructive/10",
+                )}
               >
                 Cancel
               </Button>

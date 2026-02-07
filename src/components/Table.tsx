@@ -10,9 +10,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { fetchJobs } from "@/lib/api";
-import { jobTypeOptions, statusOptions } from "@/lib/data";
+import { emptyJob, jobTypeOptions, statusOptions } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
-// import { useQuery } from "@tanstack/react-query";
+import { formatDate, formatEnum } from "@/lib/utils";
 import {
   createColumnHelper,
   flexRender,
@@ -24,18 +24,19 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import ModalForm from "./Modal";
 import { RowActions } from "./RowActions";
 import SearchBar from "./SearchBar";
 import SelectComponent from "./Select";
-import ModalForm from "./Modal";
 
 const columnHelper = createColumnHelper<JobDataType>();
 
 // Define columns for the table
 const columns = [
-  columnHelper.accessor("id", {
-    header: "ID",
-    cell: (info) => info.getValue(),
+  columnHelper.display({
+    id: "serial",
+    header: "S. No.",
+    cell: ({ row }) => row.index + 1,
   }),
   columnHelper.accessor("company", {
     header: "Company",
@@ -47,23 +48,23 @@ const columns = [
   }),
   columnHelper.accessor("status", {
     header: "Status",
-    cell: (info) => info.getValue(),
+    cell: (info) => formatEnum(info.getValue()),
   }),
   columnHelper.accessor("jobType", {
     header: "Job Type",
-    cell: (info) => info.getValue(),
+    cell: (info) => formatEnum(info.getValue()),
   }),
   columnHelper.accessor("mode", {
     header: "Mode",
-    cell: (info) => info.getValue(),
+    cell: (info) => formatEnum(info.getValue()),
   }),
   columnHelper.accessor("createdAt", {
-    header: "Created At",
-    cell: (info) => info.getValue(),
+    header: "Created On",
+    cell: (info) => formatDate(info.getValue()),
   }),
   columnHelper.accessor("appliedAt", {
-    header: "Applied At",
-    cell: (info) => info.getValue(),
+    header: "Applied On",
+    cell: (info) => formatDate(info.getValue()),
   }),
   columnHelper.display({
     id: "actions",
@@ -80,23 +81,6 @@ const columns = [
     enableSorting: false,
   }),
 ];
-
-const emptyJob: JobDataType  = {
-    id: "",
-    company: "",
-    role: "",
-    jobType: "FULL_TIME",
-    mode: "REMOTE",
-    status: "SAVED",
-    location: "",
-    source: "",
-    jobLink: "",
-    notes: "",
-    appliedAt: "",
-    createdAt: "",
-    updatedAt: "",
-    userId: "",
-  }
 
 export default function TableComponent() {
   const [globalFilter, setGlobalFilter] = useState("");
@@ -165,7 +149,7 @@ export default function TableComponent() {
           />
         </div>
         <div>
-          <ModalForm mode="add" job={emptyJob}/>
+          <ModalForm mode="add" job={emptyJob} />
         </div>
       </div>
       <Table>
