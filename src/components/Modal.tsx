@@ -11,7 +11,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Field, FieldGroup } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { createJob, deleteJob, updateJob } from "@/lib/api";
 import { jobModeOptions, jobTypeOptions, statusOptions } from "@/lib/data";
@@ -19,7 +18,7 @@ import { JobDataType } from "@/lib/types";
 import { Edit, Plus, Trash } from "lucide-react";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import SelectComponent from "./Select";
+import { SelectField, TextInputField } from "./FormFields";
 import DatePicker from "./ui/DatePicker";
 import { Textarea } from "./ui/textarea";
 
@@ -32,27 +31,27 @@ const actionConfig = {
     className: "",
     description:
       "Add a new job you've applied to or plan to apply for. Track its status, type, and important details in one place.",
-    buttonText: "Save Changes",
+    buttonText: ["Adding...", "Add Job"],
   },
   edit: {
-    label: "Edit Job",
+    label: "Edit Job Application",
     icon: Edit,
     variant: "ghost" as const,
     showLabel: false,
     className: "",
     description:
-      "Update job details to kepp your application progress accurate",
-    buttonText: "Update Changes",
+      "Update job details to keep your application progress accurate",
+    buttonText: ["Updating...", "Update Job"],
   },
   delete: {
-    label: "Delete Job",
+    label: "Delete Job Application",
     icon: Trash,
     variant: "ghost" as const,
     showLabel: false,
     className: "text-destructive/60 hover:text-destructive",
     description:
       "Are you sure you want to delete this job? This action cannot be undone.",
-    buttonText: "Delete Job",
+    buttonText: ["Deleting...", "Delete Job"],
   },
 };
 
@@ -67,7 +66,7 @@ export default function ModalForm({
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { isSubmitting },
   } = useForm<JobDataType>({
     defaultValues: {
       ...job,
@@ -77,11 +76,9 @@ export default function ModalForm({
   const config = actionConfig[mode];
   const Icon = config.icon;
   const [open, setOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const isDelete = mode === "delete";
   const onSubmitFn = async (jobData: JobDataType) => {
     try {
-      setIsSubmitting(true);
       if (mode === "add") {
         await createJob(jobData);
       } else if (mode === "edit" && job) {
@@ -92,8 +89,6 @@ export default function ModalForm({
       setOpen(false);
     } catch (err) {
       console.error(err);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -123,101 +118,58 @@ export default function ModalForm({
           </DialogHeader>
           <FieldGroup className="flex flex-col gap-4">
             <FieldGroup className="flex flex-row items-center gap-2">
-              <Field>
-                <Label htmlFor="company">Company</Label>
-                <Input
-                  id="company"
-                  {...register("company")}
-                  disabled={isDelete}
-                  required
-                />
-              </Field>
-              <Field>
-                <Label htmlFor="role">Role</Label>
-                <Input
-                  id="role"
-                  {...register("role")}
-                  disabled={isDelete}
-                  required
-                />
-              </Field>
+              <TextInputField
+                label="Company"
+                name="company"
+                register={register}
+                isDelete={isDelete}
+              />
+              <TextInputField
+                label="Role"
+                name="role"
+                register={register}
+                isDelete={isDelete}
+              />
             </FieldGroup>
             <FieldGroup className="flex flex-row items-center gap-2">
-              <Field>
-                <Label htmlFor="jobType">Job Type</Label>
-                <Controller
-                  name="jobType"
-                  control={control}
-                  render={({ field }) => (
-                    <SelectComponent
-                      state={field.value}
-                      stateFn={field.onChange}
-                      label="Job Type"
-                      options={jobTypeOptions}
-                      popup={true}
-                      disabled={isDelete}
-                      id="jobType"
-                    />
-                  )}
-                />
-              </Field>
-              <Field>
-                <Label htmlFor="mode">Job Mode</Label>
-                <Controller
-                  name="mode"
-                  control={control}
-                  render={({ field }) => (
-                    <SelectComponent
-                      state={field.value}
-                      stateFn={field.onChange}
-                      label="Job Mode"
-                      options={jobModeOptions}
-                      popup={true}
-                      disabled={isDelete}
-                      id="mode"
-                    />
-                  )}
-                />
-              </Field>
+              <SelectField
+                name="jobType"
+                label="Job Type"
+                control={control}
+                isDelete={isDelete}
+                options={jobTypeOptions}
+              />
+              <SelectField
+                name="mode"
+                label="Job Mode"
+                control={control}
+                isDelete={isDelete}
+                options={jobModeOptions}
+              />
             </FieldGroup>
             <FieldGroup className="flex flex-row items-center gap-2">
-              <Field>
-                <Label htmlFor="status">Status</Label>
-                <Controller
-                  name="status"
-                  control={control}
-                  render={({ field }) => (
-                    <SelectComponent
-                      state={field.value}
-                      stateFn={field.onChange}
-                      label="Status"
-                      options={statusOptions}
-                      popup={true}
-                      disabled={isDelete}
-                      id="status"
-                    />
-                  )}
-                />
-              </Field>
-              <Field>
-                <Label htmlFor="location">Location</Label>
-                <Input
-                  id="location"
-                  placeholder="Hyderabad, San Fransisco, ..."
-                  {...register("location")}
-                  disabled={isDelete}
-                />
-              </Field>
+              <SelectField
+                name="status"
+                label="Status"
+                control={control}
+                isDelete={isDelete}
+                options={statusOptions}
+              />
+              <TextInputField
+                label="Location"
+                name="location"
+                placeholder="Hyderabad, San Fransisco, ..."
+                register={register}
+                isDelete={isDelete}
+              />
             </FieldGroup>
             <FieldGroup className="flex flex-row items-center gap-2">
-              <Field>
-                <Label htmlFor="jobLink">Job Link</Label>
-                <Input
-                  id="jobLink"
-                  {...register("jobLink")}
-                  disabled={isDelete}
-                />
-              </Field>
+              <TextInputField
+                label="Job Link"
+                name="jobLink"
+                register={register}
+                isDelete={isDelete}
+              />
               <Field>
                 <Label htmlFor="appliedAt">Applied On</Label>
                 <Controller
@@ -245,7 +197,7 @@ export default function ModalForm({
               </Field>
             </FieldGroup>
           </FieldGroup>
-          <DialogFooter>
+          <DialogFooter className="mt-4">
             <DialogClose asChild>
               <Button
                 type="button"
@@ -264,7 +216,7 @@ export default function ModalForm({
                   : "cursor-pointer"
               }
             >
-              {isSubmitting ? "Processing..." : config.buttonText}
+              {isSubmitting ? config.buttonText[0] : config.buttonText[1]}
             </Button>
           </DialogFooter>
         </form>

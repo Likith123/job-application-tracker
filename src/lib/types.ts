@@ -1,4 +1,5 @@
 import { JobMode, JobStatus, JobType } from "@/generated/prisma/enums";
+import { Control, UseFormRegister } from "react-hook-form";
 
 export type SignInFormData = {
   email: string;
@@ -34,4 +35,17 @@ export type JobDataType = {
   createdAt: string;
   updatedAt: string;
   userId: string;
+};
+
+export type FormFieldProps = {
+  name: keyof JobDataType;
+  label: string;
+  placeholder?: string;
+  register?: UseFormRegister<JobDataType>;
+  isDelete: boolean;
+  control?: Control<JobDataType>;
+  options?: {
+    label: string;
+    value: string;
+  }[];
 };
