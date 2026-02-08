@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { fetchJobs } from "@/lib/api";
-import { emptyJob, jobTypeOptions, statusOptions } from "@/lib/data";
+import { emptyJob, statusOptions } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
 import { formatDate, formatEnum } from "@/lib/utils";
 import {
@@ -31,7 +31,6 @@ import SelectComponent from "./Select";
 
 const columnHelper = createColumnHelper<JobDataType>();
 
-// Define columns for the table
 const columns = [
   columnHelper.display({
     id: "serial",

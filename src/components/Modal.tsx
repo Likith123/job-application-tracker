@@ -23,6 +23,7 @@ import { JobDataType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { SelectField, TextInputField } from "./FormFields";
 import DatePicker from "./ui/DatePicker";
 import { Textarea } from "./ui/textarea";
@@ -38,7 +39,8 @@ export default function ModalForm({
     register,
     control,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isDirty },
+    reset,
   } = useForm<JobDataType>({
     defaultValues: {
       ...job,
@@ -53,19 +55,33 @@ export default function ModalForm({
     try {
       if (mode === "add") {
         await createJob(jobData);
+        toast.success("Job added successfully !");
       } else if (mode === "edit" && job) {
-        await updateJob(job.id, jobData);
+        if (!isDirty) {
+          toast.error("No changes detected. Please modify at least one field.");
+          setOpen(true);
+        } else {
+          await updateJob(job.id, jobData);
+        }
       } else if (mode === "delete" && job) {
         await deleteJob(job.id);
+        toast.success("Job deleted successfully !");
       }
-      setOpen(false);
     } catch (err) {
       console.error(err);
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      reset();
+    }
+    setOpen(isOpen);
+  };
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button
           type="button"
