@@ -24,7 +24,7 @@ export default function SignUp() {
     password: "",
   });
   const [error, setError] = useState("");
-  
+
   async function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
@@ -47,7 +47,7 @@ export default function SignUp() {
   }
 
   return (
-    <section className="container max-w-7xl min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center">
+    <section className="relative container max-w-7xl h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center overflow-hidden">
       <Card className="w-full max-w-md p-8 shadow-lg">
         <CardTitle className="text-2xl font-bold text-center">
           Sign Up
@@ -135,6 +135,7 @@ export default function SignUp() {
           </Link>
         </p>
       </Card>
+      <div className="w-full h-20 absolute -bottom-20 bg-primary/40 inset rounded-full blur-[100px]"></div>
     </section>
   );
 }

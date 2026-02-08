@@ -39,7 +39,7 @@ export default function SignIn() {
     }
   }
   return (
-    <section className="container max-w-7xl min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center">
+    <section className="relative container max-w-7xl min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center overflow-hidden">
       <Card className="p-8 min-w-md">
         <CardTitle className="text-2xl font-bold text-center">
           Sign In
@@ -91,6 +91,7 @@ export default function SignIn() {
           </Link>
         </p>
       </Card>
+      <div className="w-full h-20 absolute -bottom-20 bg-primary/40 inset rounded-full blur-[100px]"></div>
     </section>
   );
 }

@@ -5,27 +5,22 @@ const SignedInNavLinks = [
   {
     status: "saved",
     label: "Saved Jobs",
-    color: "bg-yellow-400 text-white",
   },
   {
     status: "applied",
     label: "Applied Jobs",
-    color: "bg-blue-400 text-white",
   },
   {
     status: "interview",
     label: "Interviews",
-    color: "bg-purple-400 text-white",
   },
   {
     status: "success",
     label: "Offers",
-    color: "bg-green-400 text-white",
   },
   {
     status: "rejected",
     label: "Rejected Applications",
-    color: "bg-red-400 text-white",
   },
 ];
 
@@ -108,8 +103,7 @@ const actionConfig = {
     variant: "ghost" as const,
     showLabel: false,
     className: "muted",
-    description:
-      "View your job aplication.",
+    description: "View your job aplication.",
     buttonText: ["", ""],
   },
 };

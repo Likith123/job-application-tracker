@@ -8,7 +8,7 @@ export default function FormButton({ text }: { text: string }) {
     <Button
       type="submit"
       disabled={pending}
-      className="w-full bg-primary text-primary-foreground rounded-md hover:bg-primary"
+      className="w-full bg-primary text-primary-foreground rounded-md hover:bg-primary hover:cursor-pointer"
     >
       {pending ? "Submitting..." : text}
     </Button>

@@ -18,7 +18,7 @@ import {
 } from "./ui/tooltip";
 
 export default function JobsSectionWithStatus(navLinkObj: NavLinkType) {
-  const { status, label, color } = navLinkObj;
+  const { status, label } = navLinkObj;
   const [jobs, setJobs] = useState<JobDataType[]>([]);
   useEffect(() => {
     const getJobs = async () => {

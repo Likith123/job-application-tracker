@@ -16,7 +16,6 @@ export type SignUpFormData = {
 export type NavLinkType = {
   status: string;
   label: string;
-  color: string;
 };
 
 export type JobDataType = {
