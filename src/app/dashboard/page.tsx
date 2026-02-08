@@ -4,7 +4,7 @@ import { NavLinkType } from "@/lib/types";
 
 export default function Dashboard() {
   return (
-    <section className="container max-w-7xl mx-auto min-h-[calc(100vh-4rem)] flex gap-8 flex-wrap justify-center">
+    <section className="container max-w-7xl mx-auto min-h-[calc(100vh-4rem)] flex gap-16 flex-wrap justify-center">
       <header className="mt-12 text-center w-full flex flex-col items-center gap-4">
         <h1 className="text-6xl font-bold bg-linear-to-tr from-primary/60 via-primary/80 to-primary text-transparent bg-clip-text">
           Jobs

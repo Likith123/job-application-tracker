@@ -33,16 +33,15 @@ export default function JobsSectionWithStatus(navLinkObj: NavLinkType) {
     getJobs();
   }, [status]);
   return (
-    <div className="w-80 h-100 flex items-center justify-start border border-gray-200 rounded-lg flex-col overflow-hidden shadow-sm">
-      {/* heading with link */}
+    <div className="w-80 h-100 flex items-center justify-start border-2 border-emarald-500 rounded-lg flex-col overflow-hidden shadow-sm">
       <div
-        className={`w-full px-4 py-6 flex items-center justify-between ${color}`}
+        className={`w-full px-4 py-6 flex items-center justify-between bg-emerald-600`}
       >
         <span>{label}</span>
         <span>
           <Link
             href={`/dashboard/${status}`}
-            className={`${color} group underline flex items-center justify-center gap-2`}
+            className={`text-foreground group underline flex items-center justify-center gap-2`}
           >
             View All{" "}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
