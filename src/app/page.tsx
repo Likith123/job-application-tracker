@@ -28,12 +28,13 @@ export default function Home() {
         </Link>
         <p className="">Free forever. No payment required.</p>
       </div>
-      <div className="max-w-7xl mx-auto mt-16 rounded-lg overflow-hidden shadow-primary/20 shadow-2xl">
+      <div className="max-w-7xl mx-auto mt-16 rounded-lg overflow-hidden shadow-[-1px_-15px_80px_1px_rgba(34,197,94,0.2)] hover:scale-102 transition-transform duration-300">
         <Image
           src="/job-application-hero.png"
           alt="Hero Image"
           width={1000}
           height={80}
+          priority
         />
       </div>
     </section>
