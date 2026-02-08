@@ -13,7 +13,7 @@ export async function fetchJobs(status?: string): Promise<JobDataType[]> {
 }
 
 export async function createJob(job: JobDataType) {
-  const url = "api/jobs";
+  const url = "/api/jobs";
   const res = await fetch(url, {
     method: "POST",
     credentials: "include",
