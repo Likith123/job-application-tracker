@@ -48,7 +48,7 @@ export default function ModalForm({
   const config = actionConfig[mode];
   const Icon = config.icon;
   const [open, setOpen] = useState(false);
-  const isDelete = mode === "delete";
+  const isDelete = mode === "delete" || mode === "view";
   const onSubmitFn = async (jobData: JobDataType) => {
     try {
       if (mode === "add") {
@@ -185,11 +185,11 @@ export default function ModalForm({
             <Button
               type="submit"
               disabled={isSubmitting}
-              className={
-                mode === "delete"
-                  ? "bg-destructive hover:bg-destructive/80 cursor-pointer"
-                  : "cursor-pointer"
-              }
+              className={cn(
+                "cursor-pointer",
+                mode === "delete" && "bg-destructive hover:bg-destructive/80",
+                mode === "view" && "hidden",
+              )}
             >
               {isSubmitting ? config.buttonText[0] : config.buttonText[1]}
             </Button>

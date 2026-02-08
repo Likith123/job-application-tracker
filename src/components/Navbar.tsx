@@ -7,7 +7,7 @@ import UserProfile from "./UserProfile";
 export default function Navbar() {
   const { data: session } = useSession();
   return (
-    <nav className="sticky top-0 h-16 flex justify-between items-center px-8 md:px-16 py-4 border-b border-primary/20">
+    <nav className="sticky top-0 h-16 flex justify-between items-center px-8 md:px-16 py-4 border-b border-primary/20 z-50 shadow-md blur-backdrop-filter backdrop-filter backdrop-blur-lg">
       <div className="text-2xl font-bold text-primary">
         <Link href="/">Tracker</Link>
       </div>

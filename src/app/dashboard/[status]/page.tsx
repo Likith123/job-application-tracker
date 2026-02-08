@@ -1,3 +1,5 @@
+import TableComponent from "@/components/Table";
+
 export default async function Jobs({
   params,
 }: {
@@ -6,7 +8,7 @@ export default async function Jobs({
   const { status } = await params;
   return (
     <div className="container max-w-7xl mx-auto">
-      Dashboard Status: {status}
+      <TableComponent statusProp = {status}/>
     </div>
   );
 }

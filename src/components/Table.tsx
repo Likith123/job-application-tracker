@@ -82,14 +82,17 @@ const columns = [
   }),
 ];
 
-export default function TableComponent() {
+export default function TableComponent({
+  statusProp,
+}: {
+  statusProp?: string;
+}) {
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [jobType, setJobType] = useState("ALL");
-  // const [jobMode, setJobMode] = useState("ALL");
-  const [status, setStatus] = useState("ALL");
+  const [status, setStatus] = useState(statusProp ? statusProp.toUpperCase() : "ALL");
   const [data, setData] = useState<JobDataType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const getJobs = async () => {
       try {
@@ -104,6 +107,7 @@ export default function TableComponent() {
 
     getJobs();
   }, [status]);
+
   const table = useReactTable({
     data,
     columns,
@@ -128,15 +132,6 @@ export default function TableComponent() {
             onChange={(value) => setGlobalFilter(String(value))}
             placeholder="Search all columns..."
             className="px-2 py-1.5 border border-gray-300 rounded-md w-full max-w-60 active:ring-0"
-          />
-          <SelectComponent
-            state={jobType}
-            stateFn={setJobType}
-            label="Job Type"
-            options={jobTypeOptions}
-            popup={false}
-            id="jobType"
-            disabled={false}
           />
           <SelectComponent
             state={status}

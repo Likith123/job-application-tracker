@@ -1,34 +1,29 @@
-import { Edit, Plus, Trash } from "lucide-react";
+import { Edit, Eye, Plus, Trash } from "lucide-react";
 import { JobDataType } from "./types";
 
 const SignedInNavLinks = [
   {
-    name: "wishlistJobs",
-    href: "/dashboard/wishlist-jobs",
-    label: "Wish List Jobs",
+    status: "saved",
+    label: "Saved Jobs",
     color: "bg-yellow-400 text-white",
   },
   {
-    name: "appliedJobs",
-    href: "/dashboard/applied-jobs",
+    status: "applied",
     label: "Applied Jobs",
     color: "bg-blue-400 text-white",
   },
   {
-    name: "interviews",
-    href: "/dashboard/interviews",
+    status: "interview",
     label: "Interviews",
     color: "bg-purple-400 text-white",
   },
   {
-    name: "successfulOffers",
-    href: "/dashboard/successful-offers",
-    label: "Successful Offers",
+    status: "success",
+    label: "Offers",
     color: "bg-green-400 text-white",
   },
   {
-    name: "rejectedApplications",
-    href: "/dashboard/rejected-applications",
+    status: "rejected",
     label: "Rejected Applications",
     color: "bg-red-400 text-white",
   },
@@ -106,6 +101,16 @@ const actionConfig = {
     description:
       "Are you sure you want to delete this job? This action cannot be undone.",
     buttonText: ["Deleting...", "Delete Job"],
+  },
+  view: {
+    label: "View Job Application",
+    icon: Eye,
+    variant: "ghost" as const,
+    showLabel: false,
+    className: "muted",
+    description:
+      "View your job aplication.",
+    buttonText: ["", ""],
   },
 };
 

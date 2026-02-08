@@ -14,8 +14,7 @@ export type SignUpFormData = {
 };
 
 export type NavLinkType = {
-  name: string;
-  href: string;
+  status: string;
   label: string;
   color: string;
 };
