@@ -56,16 +56,19 @@ export default function ModalForm({
       if (mode === "add") {
         await createJob(jobData);
         toast.success("Job added successfully !");
+        setOpen(false);
       } else if (mode === "edit" && job) {
         if (!isDirty) {
           toast.error("No changes detected. Please modify at least one field.");
           setOpen(true);
         } else {
           await updateJob(job.id, jobData);
+          setOpen(false);
         }
       } else if (mode === "delete" && job) {
         await deleteJob(job.id);
         toast.success("Job deleted successfully !");
+        setOpen(false);
       }
     } catch (err) {
       console.error(err);

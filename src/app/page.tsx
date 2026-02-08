@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="container max-w-7xl min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center">
-      <div className="max-w-7xl mx-auto text-center space-y-8">
+    <section className="container max-w-7xl h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center overflow-hidden">
+      <div className="max-w-7xl mx-auto text-center mt-16 space-y-6">
         <h1 className="text-4xl font-bold">
           Welcome to the{" "}
           <span className="text-primary italic">Job Application Tracker</span>
@@ -15,7 +16,7 @@ export default function Home() {
           efficiently and stay organized.
         </p>
       </div>
-      <div className="max-w-7xl mx-auto mt-16 flex flex-col gap-4 items-center">
+      <div className="max-w-7xl mx-auto mt-8 flex flex-col gap-4 items-center">
         <Link href="/sign-up">
           <Button
             size="lg"
@@ -26,6 +27,14 @@ export default function Home() {
           </Button>
         </Link>
         <p className="">Free forever. No payment required.</p>
+      </div>
+      <div className="max-w-7xl mx-auto mt-16 rounded-lg overflow-hidden shadow-primary/20 shadow-2xl">
+        <Image
+          src="/job-application-hero.png"
+          alt="Hero Image"
+          width={1000}
+          height={80}
+        />
       </div>
     </section>
   );
