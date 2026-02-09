@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { fetchJobs } from "@/lib/api";
-import { emptyJob, statusOptions } from "@/lib/data";
+import { statusOptions } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
 import { formatDate, formatEnum } from "@/lib/utils";
 import {
@@ -24,7 +24,6 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { useEffect, useState } from "react";
-import ModalForm from "./Modal";
 import { RowActions } from "./RowActions";
 import SearchBar from "./SearchBar";
 import SelectComponent from "./Select";
@@ -88,7 +87,9 @@ export default function TableComponent({
 }) {
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [status, setStatus] = useState(statusProp ? statusProp.toUpperCase() : "ALL");
+  const [status, setStatus] = useState(
+    statusProp ? statusProp.toUpperCase() : "ALL",
+  );
   const [data, setData] = useState<JobDataType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
