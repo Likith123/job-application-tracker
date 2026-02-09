@@ -3,6 +3,19 @@ import { JobDataType } from "./types";
 
 const SignedInNavLinks = [
   {
+    name: "dashboard",
+    label: "Dashboard",
+    link: "/dashboard",
+  },
+  {
+    name: "allJobs",
+    label: "All Jobs",
+    link: "/dashboard/all",
+  },
+];
+
+const JobsWithStatusObj = [
+  {
     status: "saved",
     label: "Saved Jobs",
   },
@@ -23,6 +36,9 @@ const SignedInNavLinks = [
     label: "Rejected Applications",
   },
 ];
+
+// <Link href="/dashboard" className="text-primary/70 hover:text-primary/85 text-semibold">Dashboard</Link>
+//             <Link href="/dashboard/all" className="text-primary/70 hover:text-primary/85 text-semibold">All Jobs</Link>
 
 const emptyJob: JobDataType = {
   id: "",
@@ -72,7 +88,7 @@ const actionConfig = {
     icon: Plus,
     variant: "default" as const,
     showLabel: true,
-    className: "",
+    className: "bg-primary/80 hover:bg-primary/90",
     description:
       "Add a new job you've applied to or plan to apply for. Track its status, type, and important details in one place.",
     buttonText: ["Adding...", "Add Job"],
@@ -112,6 +128,7 @@ export {
   actionConfig,
   emptyJob,
   jobModeOptions,
+  JobsWithStatusObj,
   jobTypeOptions,
   SignedInNavLinks,
   statusOptions,

@@ -142,9 +142,6 @@ export default function TableComponent({
             disabled={false}
           />
         </div>
-        <div>
-          <ModalForm mode="add" job={emptyJob} />
-        </div>
       </div>
       <Table>
         <TableCaption>

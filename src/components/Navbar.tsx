@@ -1,6 +1,8 @@
 "use client";
 import { useSession } from "@/lib/auth/auth-client";
+import { emptyJob } from "@/lib/data";
 import Link from "next/link";
+import ModalForm from "./Modal";
 import NavLinks from "./NavLinks";
 import UserProfile from "./UserProfile";
 
@@ -15,6 +17,7 @@ export default function Navbar() {
         {session?.user ? (
           <div className="flex items-center justify-center gap-6">
             <NavLinks />
+            <ModalForm mode="add" job={emptyJob} />
             <UserProfile session={session} />
           </div>
         ) : (
