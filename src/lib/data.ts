@@ -68,7 +68,7 @@ const jobModeOptions = [
 
 const actionConfig = {
   add: {
-    label: "Add Job Application",
+    label: "Add Job",
     icon: Plus,
     variant: "default" as const,
     showLabel: true,
@@ -78,7 +78,7 @@ const actionConfig = {
     buttonText: ["Adding...", "Add Job"],
   },
   edit: {
-    label: "Edit Job Application",
+    label: "Edit Job",
     icon: Edit,
     variant: "ghost" as const,
     showLabel: false,
@@ -88,7 +88,7 @@ const actionConfig = {
     buttonText: ["Updating...", "Update Job"],
   },
   delete: {
-    label: "Delete Job Application",
+    label: "Delete Job",
     icon: Trash,
     variant: "ghost" as const,
     showLabel: false,

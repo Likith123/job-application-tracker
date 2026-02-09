@@ -93,7 +93,7 @@ export default function ModalForm({
           onClick={() => setOpen(true)}
         >
           <Icon className={config.showLabel ? "mr-1" : ""} />
-          {config.showLabel && config.label}
+          {config.showLabel && `${config.label} Application`}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-sm md:max-w-xl">
