@@ -170,7 +170,7 @@ export default function ModalForm({
                     <DatePicker
                       value={field.value ? new Date(field.value) : undefined}
                       onChange={field.onChange}
-                      disabled={isDelete}
+                      disabled={isDelete || control._formValues?.status === "SAVED"}
                     />
                   )}
                 />

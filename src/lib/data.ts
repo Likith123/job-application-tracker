@@ -10,7 +10,7 @@ const SignedInNavLinks = [
   {
     name: "allJobs",
     label: "All Jobs",
-    link: "/dashboard/all",
+    link: "/jobs",
   },
 ];
 
@@ -36,9 +36,6 @@ const JobsWithStatusObj = [
     label: "Rejected Applications",
   },
 ];
-
-// <Link href="/dashboard" className="text-primary/70 hover:text-primary/85 text-semibold">Dashboard</Link>
-//             <Link href="/dashboard/all" className="text-primary/70 hover:text-primary/85 text-semibold">All Jobs</Link>
 
 const emptyJob: JobDataType = {
   id: "",

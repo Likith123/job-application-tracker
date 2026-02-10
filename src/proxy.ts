@@ -6,7 +6,7 @@ export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   const authPages = ["/", "/sign-in", "/sign-up"];
-  const protectedPages = ["/dashboard"];
+  const protectedPages = ["/dashboard", "jobs", "/jobs/:status"];
 
   const session = await getSession();
 
@@ -15,12 +15,19 @@ export async function proxy(req: NextRequest) {
   }
 
   if (!session && protectedPages.some((p) => pathname.startsWith(p))) {
-    return NextResponse.redirect(new URL("/sign-in", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/", "/sign-in", "/sign-up", "/dashboard", "/dashboard/:status"],
+  matcher: [
+    "/",
+    "/sign-in",
+    "/sign-up",
+    "/dashboard",
+    "/jobs",
+    "/jobs/:status",
+  ],
 };

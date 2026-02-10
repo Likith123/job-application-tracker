@@ -1,6 +1,6 @@
 import TableComponent from "@/components/Table";
 
-export default async function Jobs({
+export default async function JobsByStatus({
   params,
 }: {
   params: Promise<{ status: string }>;

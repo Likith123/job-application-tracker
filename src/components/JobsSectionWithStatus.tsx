@@ -40,7 +40,7 @@ export default function JobsSectionWithStatus(navLinkObj: NavLinkType) {
         <span>{label}</span>
         <span>
           <Link
-            href={`/dashboard/${status}`}
+            href={`/jobs/${status}`}
             className={`text-foreground group underline flex items-center justify-center gap-2`}
           >
             View All{" "}
