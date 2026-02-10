@@ -123,7 +123,7 @@ export default function SignUp() {
               />
             </div> */}
             <div className="mt-4">
-              <FormButton text="Sign Up" />
+              <FormButton text="Sign Up" loadingText="Signing up ..." />
             </div>
           </form>
         </CardContent>

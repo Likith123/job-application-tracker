@@ -2,7 +2,13 @@
 import { useFormStatus } from "react-dom";
 import { Button } from "./ui/button";
 
-export default function FormButton({ text }: { text: string }) {
+export default function FormButton({
+  text,
+  loadingText,
+}: {
+  text: string;
+  loadingText: string;
+}) {
   const { pending } = useFormStatus();
   return (
     <Button
@@ -10,7 +16,7 @@ export default function FormButton({ text }: { text: string }) {
       disabled={pending}
       className="w-full bg-primary text-primary-foreground rounded-md hover:bg-primary hover:cursor-pointer"
     >
-      {pending ? "Submitting..." : text}
+      {pending ? loadingText : text}
     </Button>
   );
 }

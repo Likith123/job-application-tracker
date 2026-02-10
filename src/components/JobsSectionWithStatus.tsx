@@ -37,7 +37,7 @@ export default function JobsSectionWithStatus(navLinkObj: NavLinkType) {
       <div
         className={`w-full px-4 py-6 flex items-center justify-between bg-primary/80`}
       >
-        <span>{label}</span>
+        <span className="font-bold">{label}</span>
         <span>
           <Link
             href={`/jobs/${status}`}

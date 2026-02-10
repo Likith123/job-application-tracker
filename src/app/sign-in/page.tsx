@@ -79,7 +79,7 @@ export default function SignIn() {
               />
             </div>
             <div className="mt-4">
-              <FormButton text="Sign In" />
+              <FormButton text="Sign In" loadingText="Signing in ..." />
             </div>
           </form>
         </CardContent>
