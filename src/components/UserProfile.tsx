@@ -60,6 +60,7 @@ export default function UserProfile({ session }: { session: Session }) {
             onClick={async () => {
               const result = await signOut();
               if (result.data) {
+                router.refresh();
                 router.push("/sign-in");
               } else {
                 alert("Sign out failed");
