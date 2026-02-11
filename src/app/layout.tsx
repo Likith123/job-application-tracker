@@ -39,8 +39,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-{
-  /* <div className="w-full h-75 absolute -bottom-90 -left-30 bg-primary/20 inset rounded-full blur-[480px]"></div>
-          <div className="w-75 h-75 absolute -right-80 -top-90 bg-primary/20 inset rounded-full blur-[480px]"></div> */
-}

@@ -14,11 +14,9 @@ export default function SearchBar({
   useEffect(() => {
     setValue(initialValue);
   }, [initialValue]);
-  //if the entered value changes, run the onChange handler once again.
   useEffect(() => {
     onChange(value);
-  }, [value]);
-  //render the basic searchbar:
+  }, [value, onChange]);
   return (
     <input
       {...props}

@@ -1,4 +1,4 @@
-import TableComponent from "@/components/Table";
+import TableComponent from "@/components/table/table";
 
 export default async function JobsByStatus({
   params,

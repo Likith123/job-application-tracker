@@ -24,7 +24,6 @@ export default function DatePicker({
 }: DatePickerProps) {
   const [date, setDate] = useState<Date | undefined>(value);
 
-  // Sync external value → internal state
   useEffect(() => {
     setDate(value);
   }, [value]);

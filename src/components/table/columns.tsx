@@ -1,0 +1,56 @@
+import { JobDataType } from "@/lib/types";
+import { formatDate, formatEnum } from "@/lib/utils";
+import { createColumnHelper } from "@tanstack/react-table";
+import { RowActions } from "../RowActions";
+
+const columnHelper = createColumnHelper<JobDataType>();
+
+export const columns = [
+  columnHelper.display({
+    id: "serial",
+    header: "S. No.",
+    cell: ({ row }) => row.index + 1,
+  }),
+  columnHelper.accessor("company", {
+    header: "Company",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("role", {
+    header: "Role",
+    cell: (info) => info.getValue(),
+  }),
+  columnHelper.accessor("status", {
+    header: "Status",
+    cell: (info) => formatEnum(info.getValue()),
+  }),
+  columnHelper.accessor("jobType", {
+    header: "Job Type",
+    cell: (info) => formatEnum(info.getValue()),
+  }),
+  columnHelper.accessor("mode", {
+    header: "Mode",
+    cell: (info) => formatEnum(info.getValue()),
+  }),
+  columnHelper.accessor("createdAt", {
+    header: "Created On",
+    cell: (info) => formatDate(info.getValue()),
+  }),
+  columnHelper.accessor("appliedAt", {
+    header: "Applied On",
+    cell: (info) => formatDate(info.getValue()),
+  }),
+  columnHelper.display({
+    id: "actions",
+    header: "Actions",
+    cell: ({ row }) => {
+      const job = row.original;
+      return (
+        <div className="flex justify-center">
+          <RowActions job={job} />
+        </div>
+      );
+    },
+    size: 40,
+    enableSorting: false,
+  }),
+];
