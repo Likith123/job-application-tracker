@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { fetchJobs } from "@/lib/api";
 import { statusOptions } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
 import { formatDate, formatEnum } from "@/lib/utils";
@@ -27,6 +26,7 @@ import { useEffect, useState } from "react";
 import { RowActions } from "./RowActions";
 import SearchBar from "./SearchBar";
 import SelectComponent from "./Select";
+import { fetchJobsClient } from "@/lib/api-client";
 
 const columnHelper = createColumnHelper<JobDataType>();
 
@@ -96,7 +96,7 @@ export default function TableComponent({
   useEffect(() => {
     const getJobs = async () => {
       try {
-        const jobs = await fetchJobs(status.toLocaleLowerCase());
+        const jobs = await fetchJobsClient(status.toLocaleLowerCase());
         setData(jobs);
       } catch (err) {
         console.error("Failed to load jobs:", err);

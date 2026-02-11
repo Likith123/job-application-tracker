@@ -1,8 +1,10 @@
 import JobsSectionWithStatus from "@/components/JobsSectionWithStatus";
+import { getSession } from "@/lib/auth/auth";
 import { JobsWithStatusObj } from "@/lib/data";
 import { NavLinkType } from "@/lib/types";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const session = await getSession();
   return (
     <section className="container max-w-7xl mx-auto py-12 min-h-[calc(100vh-4rem)] flex gap-16 flex-wrap justify-center">
       <header className="text-center w-full flex flex-col items-center gap-4">
@@ -16,9 +18,15 @@ export default function Dashboard() {
       </header>
 
       <div className="flex flex-wrap gap-16 justify-center">
-        {JobsWithStatusObj.map((navLinkObj: NavLinkType) => (
-          <JobsSectionWithStatus key={navLinkObj.status} {...navLinkObj} />
-        ))}
+        {JobsWithStatusObj.map((obj: NavLinkType) => {
+          return (
+            <JobsSectionWithStatus
+              key={obj.status}
+              obj={obj}
+              userId={session?.user.id}
+            />
+          );
+        })}
       </div>
     </section>
   );

@@ -1,9 +1,8 @@
-"use client";
+import { JobStatus } from "@/generated/prisma/enums";
 import { fetchJobs } from "@/lib/api";
-import { JobDataType, NavLinkType } from "@/lib/types";
+import { NavLinkType } from "@/lib/types";
 import { ArrowRight, MoreVertical } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import ModalForm from "./Modal";
 import {
   DropdownMenu,
@@ -17,21 +16,17 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-export default function JobsSectionWithStatus(navLinkObj: NavLinkType) {
-  const { status, label } = navLinkObj;
-  const [jobs, setJobs] = useState<JobDataType[]>([]);
-  useEffect(() => {
-    const getJobs = async () => {
-      try {
-        const allJobs = await fetchJobs(status.toLocaleLowerCase());
-        setJobs(allJobs.slice(0, 5));
-      } catch (err) {
-        console.error("Failed to load jobs:", err);
-      }
-    };
+export default async function JobsSectionWithStatus({
+  obj,
+  userId,
+}: {
+  obj: NavLinkType;
+  userId: string | undefined;
+}) {
+  const { status, label } = obj;
+  let jobs = await fetchJobs(userId, status.toLocaleLowerCase() as JobStatus);
+  jobs = jobs.slice(0, 5);
 
-    getJobs();
-  }, [status]);
   return (
     <div className="w-80 h-100 flex items-center justify-start border-2 border-emarald-500 rounded-lg flex-col overflow-hidden shadow-sm">
       <div

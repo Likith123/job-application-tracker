@@ -12,7 +12,11 @@ import {
 } from "@/components/ui/dialog";
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
-import { createJob, deleteJob, updateJob } from "@/lib/api";
+import {
+  createJobClient,
+  deleteJobClient,
+  updateJobClient,
+} from "@/lib/api-client";
 import {
   actionConfig,
   jobModeOptions,
@@ -54,7 +58,7 @@ export default function ModalForm({
   const onSubmitFn = async (jobData: JobDataType) => {
     try {
       if (mode === "add") {
-        await createJob(jobData);
+        await createJobClient(jobData);
         toast.success("Job added successfully !");
         setOpen(false);
       } else if (mode === "edit" && job) {
@@ -62,11 +66,11 @@ export default function ModalForm({
           toast.error("No changes detected. Please modify at least one field.");
           setOpen(true);
         } else {
-          await updateJob(job.id, jobData);
+          await updateJobClient(job.id, jobData);
           setOpen(false);
         }
       } else if (mode === "delete" && job) {
-        await deleteJob(job.id);
+        await deleteJobClient(job.id);
         toast.success("Job deleted successfully !");
         setOpen(false);
       }
@@ -92,8 +96,8 @@ export default function ModalForm({
           variant={config.variant}
           onClick={() => setOpen(true)}
         >
-          <Icon className={config.showLabel ? "mr-1" : ""} />
-          {config.showLabel && `${config.label} Application`}
+          <Icon />
+          {config.showLabel && config.label}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-sm md:max-w-xl">
@@ -170,7 +174,9 @@ export default function ModalForm({
                     <DatePicker
                       value={field.value ? new Date(field.value) : undefined}
                       onChange={field.onChange}
-                      disabled={isDelete || control._formValues?.status === "SAVED"}
+                      disabled={
+                        isDelete || control._formValues?.status === "SAVED"
+                      }
                     />
                   )}
                 />
@@ -206,7 +212,9 @@ export default function ModalForm({
               disabled={isSubmitting}
               className={cn(
                 "cursor-pointer",
-                mode === "delete" && "bg-destructive hover:bg-destructive/80",
+                mode === "delete"
+                  ? "bg-destructive/80 hover:bg-destructive/90"
+                  : "bg-primary/80 hover:bg-primary/90",
                 mode === "view" && "hidden",
               )}
             >

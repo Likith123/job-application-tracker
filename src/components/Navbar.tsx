@@ -1,15 +1,14 @@
-"use client";
-import { useSession } from "@/lib/auth/auth-client";
+import { getSession } from "@/lib/auth/auth";
 import { emptyJob } from "@/lib/data";
 import Link from "next/link";
 import ModalForm from "./Modal";
 import NavLinks from "./NavLinks";
 import UserProfile from "./UserProfile";
 
-export default function Navbar() {
-  const { data: session } = useSession();
+export default async function Navbar() {
+  const session = await getSession();
   return (
-    <nav className="sticky top-0 h-16 flex justify-between items-center px-8 md:px-16 py-4 border-b border-primary/20 z-50 shadow-md blur-backdrop-filter backdrop-filter backdrop-blur-lg">
+    <nav className="sticky top-0 h-16 bg-primary/2 flex justify-between items-center px-8 md:px-16 py-4 border-b border-primary/20 z-50 shadow-lg shadow-primary/5 blur-backdrop-filter backdrop-filter backdrop-blur-lg">
       <div className="text-2xl font-bold text-primary">
         <Link href="/">Tracker</Link>
       </div>

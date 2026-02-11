@@ -1,3 +1,4 @@
+"use client";
 import { signOut } from "@/lib/auth/auth-client";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback } from "./ui/avatar";
@@ -35,24 +36,23 @@ type Session = {
 
 export default function UserProfile({ session }: { session: Session }) {
   const router = useRouter();
+  const { firstName, lastName, name, email } = session.user;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar className="w-8 h-8 bg-primary text-primary-foreground">
           <AvatarFallback className="font-bold">
-            {session.user.firstName?.[0]?.toUpperCase() ?? ""}
-            {session.user.lastName?.[0]?.toUpperCase() ?? ""}
+            {firstName?.[0]?.toUpperCase() ?? ""}
+            {lastName?.[0]?.toUpperCase() ?? ""}
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-2">
-            <p className="text-sm font-medium leading-none">
-              {session.user.name}
-            </p>
+            <p className="text-sm font-medium leading-none">{name}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {session.user.email}
+              {email}
             </p>
           </div>
           <DropdownMenuItem

@@ -111,12 +111,12 @@ const actionConfig = {
     buttonText: ["Deleting...", "Delete Job"],
   },
   view: {
-    label: "View Job Application",
+    label: "View Job",
     icon: Eye,
     variant: "ghost" as const,
     showLabel: false,
     className: "muted",
-    description: "View your job aplication.",
+    description: "View complete details of this job application.",
     buttonText: ["", ""],
   },
 };

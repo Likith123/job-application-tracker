@@ -1,5 +1,5 @@
 import prisma from "@/db/prisma";
-import { JobMode, JobStatus, JobType } from "@/generated/prisma/enums";
+import { deleteJob, updateJob } from "@/lib/api";
 import { withAuth } from "@/lib/auth/auth-helper";
 import { NextResponse } from "next/server";
 
@@ -8,34 +8,8 @@ export const PUT = withAuth(async (req, user, context) => {
   if (!id) {
     return NextResponse.json({ error: "Job id is required" }, { status: 400 });
   }
-
   const body = await req.json();
-  const existingJob = await prisma.job.findFirst({
-    where: {
-      id,
-      userId: user.id,
-    },
-  });
-
-  if (!existingJob) {
-    return NextResponse.json({ error: "Job not found" }, { status: 404 });
-  }
-
-  const updatedJob = await prisma.job.update({
-    where: { id },
-    data: {
-      company: body.company,
-      role: body.role,
-      jobType: body.jobType as JobType,
-      mode: body.mode as JobMode,
-      status: body.status as JobStatus,
-      location: body.location,
-      source: body.source,
-      jobLink: body.jobLink,
-      notes: body.notes,
-      appliedAt: body.appliedAt ? new Date(body.appliedAt) : null,
-    },
-  });
+  const updatedJob = await updateJob(id, user.id, body);
   return NextResponse.json(updatedJob);
 });
 
@@ -54,9 +28,6 @@ export const DELETE = withAuth(async (_req, user, context) => {
   if (!existingJob) {
     return NextResponse.json({ error: "Job not found" }, { status: 404 });
   }
-
-  await prisma.job.delete({
-    where: { id },
-  });
+  await deleteJob(id);
   return NextResponse.json({ success: true });
 });

@@ -29,9 +29,9 @@ export type JobDataType = {
   source?: string | null;
   jobLink: string;
   notes?: string | null;
-  appliedAt?: string | null;
-  createdAt: string;
-  updatedAt: string;
+  appliedAt?: Date | string | null | undefined;
+  createdAt: Date | string;
+  updatedAt: Date | string;
   userId: string;
 };
 
