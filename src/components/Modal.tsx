@@ -12,11 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
-import {
-  createJobClient,
-  deleteJobClient,
-  updateJobClient,
-} from "@/lib/api-client";
+import { handleSubmitFn } from "@/lib/actions";
 import {
   actionConfig,
   jobModeOptions,
@@ -25,12 +21,17 @@ import {
 } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { SelectField, TextInputField } from "./FormFields";
 import DatePicker from "./ui/DatePicker";
 import { Textarea } from "./ui/textarea";
+type resType = {
+  success: boolean;
+  msg: string;
+};
 
 export default function ModalForm({
   mode,
@@ -51,33 +52,27 @@ export default function ModalForm({
     },
   });
 
+  const pathname = usePathname();
+  const router = useRouter();
   const config = actionConfig[mode];
   const Icon = config.icon;
   const [open, setOpen] = useState(false);
   const isDelete = mode === "delete" || mode === "view";
   const onSubmitFn = async (jobData: JobDataType) => {
-    try {
-      if (mode === "add") {
-        await createJobClient(jobData);
-        toast.success("Job added successfully !");
-        setOpen(false);
-      } else if (mode === "edit" && job) {
-        if (!isDirty) {
-          toast.error("No changes detected. Please modify at least one field.");
-          setOpen(true);
-        } else {
-          await updateJobClient(job.id, jobData);
-          setOpen(false);
-        }
-      } else if (mode === "delete" && job) {
-        await deleteJobClient(job.id);
-        toast.success("Job deleted successfully !");
-        setOpen(false);
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Something went wrong. Please try again.");
+    const { success, msg } = (await handleSubmitFn(
+      mode,
+      pathname,
+      jobData,
+      job,
+      isDirty,
+    )) as resType;
+    if (success) {
+      toast.success(msg);
+      router.refresh();
+    } else {
+      toast.error(msg);
     }
+    setOpen(!success);
   };
 
   const handleOpenChange = (isOpen: boolean) => {
