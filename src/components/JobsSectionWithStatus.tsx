@@ -7,14 +7,9 @@ import ModalForm from "./Modal";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
 
 export default async function JobsSectionWithStatus({
   obj,
@@ -72,34 +67,15 @@ export default async function JobsSectionWithStatus({
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent align="end" className="flex gap-1 p-1">
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span>
-                          <ModalForm mode="view" job={job} />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent>View</TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span>
-                          <ModalForm mode="edit" job={job} />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent>Edit</TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span>
-                          <ModalForm mode="delete" job={job} />
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent>Delete</TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <span>
+                    <ModalForm mode="view" job={job} />
+                  </span>
+                  <span>
+                    <ModalForm mode="edit" job={job} />
+                  </span>
+                  <span>
+                    <ModalForm mode="delete" job={job} />
+                  </span>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>

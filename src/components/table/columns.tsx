@@ -1,7 +1,7 @@
 import { JobDataType } from "@/lib/types";
 import { formatDate, formatEnum } from "@/lib/utils";
 import { createColumnHelper } from "@tanstack/react-table";
-import { RowActions } from "../RowActions";
+import { RowActions } from "./row-actions";
 
 const columnHelper = createColumnHelper<JobDataType>();
 
