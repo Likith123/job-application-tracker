@@ -1,5 +1,6 @@
 "use client";
 import { SignedInNavLinks } from "@/lib/data";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 export default function NavLinks() {
@@ -13,9 +14,18 @@ export default function NavLinks() {
           <Link
             key={name}
             href={link}
-            className={`${isActive ? "text-primary/95 hover:text-primary text-bold" : "text-primary/70 hover:text-primary/85 text-semibold"}`}
+            className={cn(
+              "relative py-1 transition-colors duration-300",
+              isActive ? "text-primary" : "text-primary/60 hover:text-primary",
+            )}
           >
             {label}
+            <span
+              className={cn(
+                "absolute bottom-0 left-0 h-0.5 rounded-b-lg bg-primary transition-all duration-300",
+                isActive ? "w-full" : "w-0",
+              )}
+            />
           </Link>
         );
       })}
