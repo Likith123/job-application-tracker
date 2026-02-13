@@ -50,11 +50,7 @@ export const columns = [
     header: "Actions",
     cell: ({ row, table }) => {
       const job = row.original;
-      return (
-        <div className="flex justify-center">
-          <RowActions job={job} refresh={table.options.meta?.refresh} />
-        </div>
-      );
+      return <RowActions job={job} refresh={table.options.meta?.refresh} />;
     },
     size: 40,
     enableSorting: false,
