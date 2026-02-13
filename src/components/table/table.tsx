@@ -30,6 +30,7 @@ export default function TableComponent({
     statusProp ? statusProp.toUpperCase() : "ALL",
   );
   const [data, setData] = useState<JobDataType[]>([]);
+  const [refreshKey, setRefreshKey] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -45,11 +46,14 @@ export default function TableComponent({
     };
 
     getJobs();
-  }, [status]);
+  }, [status, refreshKey]);
 
   const table = useReactTable({
     data,
     columns,
+    meta: {
+      refresh: () => setRefreshKey((k) => k + 1),
+    },
     getCoreRowModel: getCoreRowModel(),
     filterFns: {},
     state: {

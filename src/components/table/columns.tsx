@@ -1,7 +1,13 @@
 import { JobDataType } from "@/lib/types";
 import { formatDate, formatEnum } from "@/lib/utils";
-import { createColumnHelper } from "@tanstack/react-table";
+import { createColumnHelper, RowData, TableMeta } from "@tanstack/react-table";
 import { RowActions } from "./row-actions";
+
+declare module "@tanstack/react-table" {
+  interface TableMeta<TData extends RowData> {
+    refresh?: () => void;
+  }
+}
 
 const columnHelper = createColumnHelper<JobDataType>();
 
@@ -42,11 +48,11 @@ export const columns = [
   columnHelper.display({
     id: "actions",
     header: "Actions",
-    cell: ({ row }) => {
+    cell: ({ row, table }) => {
       const job = row.original;
       return (
         <div className="flex justify-center">
-          <RowActions job={job} />
+          <RowActions job={job} refresh={table.options.meta?.refresh} />
         </div>
       );
     },

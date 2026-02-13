@@ -23,9 +23,9 @@ export default async function JobsSectionWithStatus({
   jobs = jobs.slice(0, 5);
 
   return (
-    <div className="w-80 h-100 flex items-center justify-start border-2 border-emarald-500 rounded-lg flex-col overflow-hidden shadow-sm">
+    <div className="w-80 h-100 flex items-center justify-start border-2 border-primary/5 bg-primary/2 rounded-lg flex-col overflow-hidden shadow-sm hover:scale-102 transition-transform duration-200">
       <div
-        className={`w-full px-4 py-6 flex items-center justify-between bg-primary/80`}
+        className="w-full px-4 py-6 flex items-center justify-between bg-linear-to-b from-primary/60 to-primary/70"
       >
         <span className="font-bold">{label}</span>
         <span>
@@ -43,11 +43,11 @@ export default async function JobsSectionWithStatus({
           No {label} found
         </div>
       ) : (
-        <div className="w-full divide-y bg-primary/2">
+        <div className="w-full divide-y bg-primary/3">
           {jobs.map((job) => (
             <div
               key={job.id}
-              className="flex items-center justify-between px-4 py-3 hover:bg-muted/40 transition"
+              className="flex items-center justify-between px-4 py-3 border-b hover:bg-muted/40 transition"
             >
               <div className="flex flex-col gap-0.5">
                 <span className="text-sm font-medium">{job.role}</span>

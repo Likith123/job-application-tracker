@@ -21,7 +21,7 @@ import {
 } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -36,9 +36,11 @@ type resType = {
 export default function ModalForm({
   mode,
   job,
+  refresh,
 }: {
   mode: keyof typeof actionConfig;
   job: JobDataType;
+  refresh?: (() => void);
 }) {
   const {
     register,
@@ -53,7 +55,6 @@ export default function ModalForm({
   });
 
   const pathname = usePathname();
-  const router = useRouter();
   const config = actionConfig[mode];
   const Icon = config.icon;
   const [open, setOpen] = useState(false);
@@ -68,7 +69,7 @@ export default function ModalForm({
     )) as resType;
     if (success) {
       toast.success(msg);
-      router.refresh();
+      refresh?.();
     } else {
       toast.error(msg);
     }
