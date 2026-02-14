@@ -23,7 +23,7 @@ import { JobDataType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import toast from "react-hot-toast";
 import { SelectField, TextInputField } from "./FormFields";
 import DatePicker from "./ui/DatePicker";
@@ -40,7 +40,7 @@ export default function ModalForm({
 }: {
   mode: keyof typeof actionConfig;
   job: JobDataType;
-  refresh?: (() => void);
+  refresh?: () => void;
 }) {
   const {
     register,
@@ -52,6 +52,11 @@ export default function ModalForm({
     defaultValues: {
       ...job,
     },
+  });
+
+  const watchedStatus = useWatch({
+    control,
+    name: "status",
   });
 
   const pathname = usePathname();
@@ -170,9 +175,7 @@ export default function ModalForm({
                     <DatePicker
                       value={field.value ? new Date(field.value) : undefined}
                       onChange={field.onChange}
-                      disabled={
-                        isDelete || control._formValues?.status === "SAVED"
-                      }
+                      disabled={isDelete || watchedStatus === "SAVED"}
                     />
                   )}
                 />
