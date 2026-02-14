@@ -4,17 +4,28 @@ import { Table, TableCaption } from "@/components/ui/table";
 import { fetchJobsClient } from "@/lib/api-client";
 import { statusOptions } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
+  PaginationState,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SearchBar from "../SearchBar";
 import SelectComponent from "../Select";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../ui/pagination";
 import { TableBody, TableCell, TableRow } from "../ui/table";
 import { columns } from "./columns";
 import TableHeaderSection from "./table-header";
@@ -26,6 +37,10 @@ export default function TableComponent({
 }) {
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
   const [status, setStatus] = useState(
     statusProp ? statusProp.toUpperCase() : "ALL",
   );
@@ -35,6 +50,7 @@ export default function TableComponent({
 
   useEffect(() => {
     const getJobs = async () => {
+      setIsLoading(true);
       try {
         const jobs = await fetchJobsClient(status.toLocaleLowerCase());
         setData(jobs);
@@ -48,19 +64,28 @@ export default function TableComponent({
     getJobs();
   }, [status, refreshKey]);
 
+  const refreshTable = useCallback(() => {
+    setPagination({ pageIndex: 0, pageSize: 10 });
+    setRefreshKey((k) => k + 1);
+  }, []);
+
   const table = useReactTable({
     data,
     columns,
     meta: {
-      refresh: () => setRefreshKey((k) => k + 1),
+      refresh: refreshTable,
     },
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     filterFns: {},
     state: {
       globalFilter,
       sorting,
+      pagination,
     },
     onGlobalFilterChange: setGlobalFilter,
+    onPaginationChange: setPagination,
+    pageCount: Math.ceil(data.length / pagination.pageSize),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
@@ -116,6 +141,46 @@ export default function TableComponent({
           )}
         </TableBody>
       </Table>
+      <div className="w-full flex flex-row items-center justify-between">
+        <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
+          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount()}
+        </div>
+        <Pagination className="mx-0! w-auto!">
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                onClick={() => table.previousPage()}
+                className={cn(
+                  "cursor-pointer",
+                  !table.getCanPreviousPage() &&
+                    "pointer-events-none opacity-50",
+                )}
+              />
+            </PaginationItem>
+            {table.getPageOptions().map((page) => (
+              <PaginationItem key={page}>
+                <PaginationLink
+                  isActive={table.getState().pagination.pageIndex === page}
+                  onClick={() => table.setPageIndex(page)}
+                  className="cursor-pointer"
+                >
+                  {page + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationNext
+                onClick={() => table.nextPage()}
+                className={cn(
+                  "cursor-pointer",
+                  !table.getCanNextPage() && "pointer-events-none opacity-50",
+                )}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
     </div>
   );
 }
