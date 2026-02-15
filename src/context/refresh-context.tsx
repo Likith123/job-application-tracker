@@ -20,7 +20,7 @@ interface JobContextType {
 
 const JobContext = createContext<JobContextType | undefined>(undefined);
 
-export function RefreshProvider({ children }: { children: ReactNode }) {
+export function JobProvider({ children }: { children: ReactNode }) {
   const [refreshKey, setRefreshKey] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [pagination, setPagination] = useState<PaginationState>({
@@ -40,7 +40,14 @@ export function RefreshProvider({ children }: { children: ReactNode }) {
 
   return (
     <JobContext.Provider
-      value={{ refresh, isRefreshing, pagination, setPagination, refreshKey, setRefreshKey }}
+      value={{
+        refresh,
+        isRefreshing,
+        pagination,
+        setPagination,
+        refreshKey,
+        setRefreshKey,
+      }}
     >
       {children}
     </JobContext.Provider>

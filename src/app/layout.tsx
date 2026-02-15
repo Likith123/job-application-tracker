@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import { JobProvider } from "@/context/refresh-context";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
@@ -29,9 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
-        <main>{children}</main>
-        <Toaster position="top-right" />
+        <JobProvider>
+          <Navbar />
+          <main>{children}</main>
+          <Toaster position="top-right" />
+        </JobProvider>
       </body>
     </html>
   );
