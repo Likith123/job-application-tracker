@@ -15,7 +15,7 @@ export default function SelectComponent({
   options,
   popup,
   id,
-  disabled
+  disabled,
 }: {
   state: string;
   stateFn: (value: string) => void;
@@ -23,7 +23,7 @@ export default function SelectComponent({
   options: { label: string; value: string }[];
   popup: boolean;
   id: string;
-  disabled: boolean
+  disabled: boolean;
 }) {
   return (
     <Select
@@ -34,7 +34,7 @@ export default function SelectComponent({
       disabled={disabled}
     >
       <SelectTrigger
-        className={`p-2 border border-gray-300 rounded-md w-full${popup ? "" : " max-w-60"}`}
+        className={`p-2 border rounded-md w-full${popup ? "" : " max-w-60"}`}
         id={id}
         name={id}
       >

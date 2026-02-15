@@ -40,7 +40,7 @@ export default function UserProfile({ session }: { session: Session }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar className="w-8 h-8 bg-primary text-primary-foreground">
+        <Avatar className="w-8 h-8 bg-primary text-foreground">
           <AvatarFallback className="font-bold">
             {firstName?.[0]?.toUpperCase() ?? ""}
             {lastName?.[0]?.toUpperCase() ?? ""}

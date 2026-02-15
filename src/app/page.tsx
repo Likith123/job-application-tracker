@@ -20,7 +20,7 @@ export default function Home() {
         <Link href="/sign-up">
           <Button
             size="lg"
-            className="group bg-primary/90 text-primary-foreground rounded-md hover:bg-primary"
+            className="group bg-primary/90 text-foreground rounded-md hover:bg-primary"
           >
             Start for free{" "}
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />

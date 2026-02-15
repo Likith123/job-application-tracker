@@ -32,7 +32,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/sign-up"
-              className="px-4 py-1 bg-primary/90 text-primary-foreground text-semibold text-center rounded-md hover:bg-primary"
+              className="px-4 py-1 bg-primary/90 text-foreground text-semibold text-center rounded-md hover:bg-primary"
             >
               Sign Up
             </Link>

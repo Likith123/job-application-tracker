@@ -85,7 +85,7 @@ const actionConfig = {
     icon: Plus,
     variant: "default" as const,
     showLabel: true,
-    className: "bg-primary/80 hover:bg-primary/90",
+    className: "text-foreground bg-primary/80 hover:bg-primary/90",
     description:
       "Add a new job you've applied to or plan to apply for. Track its status, type, and important details in one place.",
     buttonText: ["Adding...", "Add Job"],
