@@ -1,5 +1,5 @@
 import { JobDataType } from "@/lib/types";
-import Modal from "../Modal";
+import Modal from "../modal";
 
 export function RowActions({
   job,

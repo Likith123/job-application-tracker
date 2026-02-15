@@ -1,6 +1,6 @@
 "use client";
 
-import FormButton from "@/components/FormButton";
+import FormButton from "@/components/form-button";
 import {
   Card,
   CardContent,

@@ -1,9 +1,9 @@
 import { getSession } from "@/lib/auth/auth";
 import { emptyJob } from "@/lib/data";
 import Link from "next/link";
-import ModalForm from "./Modal";
-import NavLinks from "./NavLinks";
-import UserProfile from "./UserProfile";
+import ModalForm from "./modal";
+import NavLinks from "./nav-links";
+import UserProfile from "./user-profile";
 
 export default async function Navbar() {
   const session = await getSession();

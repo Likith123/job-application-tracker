@@ -25,7 +25,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import toast from "react-hot-toast";
-import { SelectField, TextInputField } from "./FormFields";
+import { SelectField, TextInputField } from "./form-fields";
 import DatePicker from "./ui/DatePicker";
 import { Textarea } from "./ui/textarea";
 type resType = {

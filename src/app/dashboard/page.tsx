@@ -1,4 +1,4 @@
-import JobsSectionWithStatus from "@/components/JobsSectionWithStatus";
+import JobsSectionWithStatus from "@/components/jobs-section-with-status";
 import { getSession } from "@/lib/auth/auth";
 import { JobsWithStatusObj } from "@/lib/data";
 import { NavLinkType } from "@/lib/types";

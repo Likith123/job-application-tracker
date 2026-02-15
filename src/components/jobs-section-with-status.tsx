@@ -3,7 +3,7 @@ import { fetchJobs } from "@/lib/api";
 import { NavLinkType } from "@/lib/types";
 import { ArrowRight, MoreVertical } from "lucide-react";
 import Link from "next/link";
-import ModalForm from "./Modal";
+import ModalForm from "./modal";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,9 +24,7 @@ export default async function JobsSectionWithStatus({
 
   return (
     <div className="w-80 h-100 flex items-center justify-start border-2 border-primary/5 bg-primary/2 rounded-lg flex-col overflow-hidden shadow-sm hover:scale-102 transition-transform duration-200">
-      <div
-        className="w-full px-4 py-6 flex items-center justify-between bg-linear-to-b from-primary/60 to-primary/70"
-      >
+      <div className="w-full px-4 py-6 flex items-center justify-between bg-linear-to-b from-primary/60 to-primary/70">
         <span className="font-bold">{label}</span>
         <span>
           <Link
