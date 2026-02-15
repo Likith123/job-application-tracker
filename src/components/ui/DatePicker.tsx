@@ -23,6 +23,7 @@ export default function DatePicker({
   disabled = false,
 }: DatePickerProps) {
   const [date, setDate] = useState<Date | undefined>(value);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setDate(value);
@@ -31,10 +32,11 @@ export default function DatePicker({
   function handleSelect(selected?: Date) {
     setDate(selected);
     onChange?.(selected);
+    setOpen(false);
   }
 
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
