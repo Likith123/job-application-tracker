@@ -22,7 +22,7 @@ import {
 import { JobDataType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 import toast from "react-hot-toast";
 import { SelectField, TextInputField } from "./form-fields";
@@ -87,6 +87,12 @@ export default function ModalForm({
     }
     setOpen(isOpen);
   };
+
+  useEffect(() => {
+    if (open) {
+      reset(job);
+    }
+  }, [job, open, reset]);
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>

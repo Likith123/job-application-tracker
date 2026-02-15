@@ -1,12 +1,15 @@
-import { getSession } from "@/lib/auth/auth";
+"use client";
+import { useRefresh } from "@/context/refresh-context";
+import { useSession } from "@/lib/auth/auth-client";
 import { emptyJob } from "@/lib/data";
 import Link from "next/link";
 import ModalForm from "./modal";
 import NavLinks from "./nav-links";
 import UserProfile from "./user-profile";
 
-export default async function Navbar() {
-  const session = await getSession();
+export default function Navbar() {
+  const { data: session } = useSession();
+  const { refresh } = useRefresh();
   return (
     <nav className="sticky top-0 h-16 flex justify-between items-center px-8 md:px-16 py-4 border-b border-primary/20 z-50 blur-backdrop-filter backdrop-filter backdrop-blur-lg">
       <div className="text-2xl font-bold text-primary">
@@ -16,7 +19,7 @@ export default async function Navbar() {
         {session?.user ? (
           <div className="flex items-center justify-center gap-6">
             <NavLinks />
-            <ModalForm mode="add" job={emptyJob} />
+            <ModalForm mode="add" job={emptyJob} refresh={refresh} />
             <UserProfile session={session} />
           </div>
         ) : (

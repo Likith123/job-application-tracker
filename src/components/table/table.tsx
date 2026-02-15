@@ -1,6 +1,7 @@
 "use client";
 
 import { Table, TableCaption } from "@/components/ui/table";
+import { useRefresh } from "@/context/refresh-context";
 import { fetchJobsClient } from "@/lib/api-client";
 import { statusOptions } from "@/lib/data";
 import { JobDataType } from "@/lib/types";
@@ -11,11 +12,10 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  PaginationState,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "../search-bar";
 import SelectComponent from "../select";
 import {
@@ -35,17 +35,13 @@ export default function TableComponent({
 }: {
   statusProp?: string;
 }) {
+  const { refreshKey, refresh, pagination, setPagination } = useRefresh();
   const [globalFilter, setGlobalFilter] = useState("");
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [pagination, setPagination] = useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 10,
-  });
   const [status, setStatus] = useState(
     statusProp ? statusProp.toUpperCase() : "ALL",
   );
   const [data, setData] = useState<JobDataType[]>([]);
-  const [refreshKey, setRefreshKey] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -64,16 +60,11 @@ export default function TableComponent({
     getJobs();
   }, [status, refreshKey]);
 
-  const refreshTable = useCallback(() => {
-    setPagination({ pageIndex: 0, pageSize: 10 });
-    setRefreshKey((k) => k + 1);
-  }, []);
-
   const table = useReactTable({
     data,
     columns,
     meta: {
-      refresh: refreshTable,
+      refresh: refresh,
     },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
