@@ -30,7 +30,7 @@ export default function Home() {
       </div>
       <div className="max-w-7xl mx-auto mt-16 rounded-lg overflow-hidden shadow-[-1px_-15px_80px_1px_rgba(34,197,94,0.2)] hover:scale-102 transition-transform duration-300">
         <Image
-          src="/job-application-hero.png"
+          src="/og-image.png"
           alt="Hero Image"
           width={1000}
           height={80}
