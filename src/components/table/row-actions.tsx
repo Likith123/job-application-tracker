@@ -1,5 +1,5 @@
 import { JobDataType } from "@/lib/types";
-import Modal from "../modal";
+import ModalForm from "../modal-form";
 
 export function RowActions({
   job,
@@ -10,8 +10,8 @@ export function RowActions({
 }) {
   return (
     <div className="flex flex-row justify-center">
-      <Modal mode="edit" job={job} refresh={refresh} />
-      <Modal mode="delete" job={job} refresh={refresh} />
+      <ModalForm mode="edit" job={job} refresh={refresh} />
+      <ModalForm mode="delete" job={job} refresh={refresh} />
     </div>
   );
 }

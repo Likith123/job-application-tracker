@@ -17,7 +17,7 @@ import {
 } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import SearchBar from "../search-bar";
-import SelectComponent from "../select";
+import SelectComponent from "../select-component";
 import {
   Pagination,
   PaginationContent,

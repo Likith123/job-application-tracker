@@ -3,7 +3,7 @@ import { useRefresh } from "@/context/refresh-context";
 import { useSession } from "@/lib/auth/auth-client";
 import { emptyJob } from "@/lib/data";
 import Link from "next/link";
-import ModalForm from "./modal";
+import ModalForm from "./modal-form";
 import NavLinks from "./nav-links";
 import UserProfile from "./user-profile";
 

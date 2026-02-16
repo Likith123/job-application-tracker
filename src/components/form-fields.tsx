@@ -1,6 +1,6 @@
 import { FormFieldProps } from "@/lib/types";
 import { Controller } from "react-hook-form";
-import SelectComponent from "./select";
+import SelectComponent from "./select-component";
 import { Field } from "./ui/field";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";

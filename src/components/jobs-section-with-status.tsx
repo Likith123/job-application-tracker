@@ -3,11 +3,10 @@ import { fetchJobs } from "@/lib/api";
 import { NavLinkType } from "@/lib/types";
 import { ArrowRight, MoreVertical } from "lucide-react";
 import Link from "next/link";
-import ModalForm from "./modal";
+import ModalForm from "./modal-form";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 

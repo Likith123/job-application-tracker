@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/nav-bar";
 import { JobProvider } from "@/context/refresh-context";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
