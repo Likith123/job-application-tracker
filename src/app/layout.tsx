@@ -53,11 +53,11 @@ export const metadata: Metadata = {
     title: "Tracker - Job Application Tracker",
     description:
       "Track job applications in real-time. Stay organized throughout your job search.",
-    url: "https://tracker.vercel.app",
+    url: "https://jobat.vercel.app",
     siteName: "Tracker",
     images: [
       {
-        url: "https://tracker.vercel.app/og-image.png",
+        url: "https://jobat.vercel.app/og-image.png",
         width: 1200,
         height: 630,
         alt: "Tracker - Job Application Tracker",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     title: "Tracker - Job Application Tracker",
     description:
       "Real-time job application tracking. Stay organized and land interviews.",
-    images: ["https://tracker.vercel.app/og-image.png"],
+    images: ["https://jobat.vercel.app/og-image.png"],
     creator: "@LikithDeveloper",
     site: "@LikithDeveloper",
   },
