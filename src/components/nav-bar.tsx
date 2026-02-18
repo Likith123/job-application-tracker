@@ -1,22 +1,24 @@
 "use client";
 import { useRefresh } from "@/context/refresh-context";
 import { emptyJob } from "@/lib/data";
+import { SessionType } from "@/lib/types";
 import Link from "next/link";
 import ModalForm from "./modal-form";
 import NavLinks from "./nav-links";
 import UserProfile from "./user-profile";
-import { SessionType } from "@/lib/types";
 
-export default function Navbar({session}: {session: SessionType}) {
+export default function Navbar({ session }: { session: SessionType }) {
   const { refresh } = useRefresh();
   return (
-    <nav className="sticky top-0 h-16 flex justify-between items-center px-8 md:px-16 py-4 border-b border-primary/20 z-50 blur-backdrop-filter backdrop-filter backdrop-blur-lg">
-      <div className="text-2xl font-bold text-primary">
-        <Link href="/" className="tracking-wide leading-2">JoAT.</Link>
+    <nav className="sticky top-0 h-16 flex justify-between items-center p-4 md:px-16 border-b border-primary/20 z-50 blur-backdrop-filter backdrop-filter backdrop-blur-lg">
+      <div className="text-xl md:text-2xl font-bold text-primary">
+        <Link href="/" className="tracking-wide leading-2">
+          JoAT.
+        </Link>
       </div>
-      <div className="flex items-center justify-center gap-6">
+      <div className="flex items-center justify-center gap-2 md:gap-6">
         {session?.user ? (
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex items-center justify-center gap-2 md:gap-6">
             <NavLinks />
             <ModalForm mode="add" job={emptyJob} refresh={refresh} />
             <UserProfile session={session} />
@@ -25,13 +27,13 @@ export default function Navbar({session}: {session: SessionType}) {
           <>
             <Link
               href="/sign-in"
-              className="text-semibold text-primary/90 hover:text-primary"
+              className="text-sm md:text-base font-semibold text-primary/90 hover:text-primary transition-colors"
             >
               Sign In
             </Link>
             <Link
               href="/sign-up"
-              className="px-4 py-1 bg-primary/90 text-foreground text-semibold text-center rounded-md hover:bg-primary"
+              className="px-2 md:px-4 py-1.5 bg-primary/90 text-foreground text-sm md:text-base font-semibold text-center rounded-md hover:bg-primary transition-colors"
             >
               Sign Up
             </Link>

@@ -24,9 +24,11 @@ export default function SignUp() {
     password: "",
   });
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const result = await signUp.email({
         name: formData.firstName.trim() + " " + formData.lastName.trim(),
@@ -44,19 +46,21 @@ export default function SignUp() {
       }
     } catch (error) {
       setError("An unexpected error occurred during sign up.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
   return (
-    <section className="relative container max-w-7xl h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative container max-w-7xl min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center overflow-hidden px-4 py-8">
       <Card className="w-full max-w-md p-8 shadow-lg">
         <CardTitle className="text-2xl font-bold text-center">
           Sign Up
         </CardTitle>
-        <CardDescription className="text-lg font-medium text-center text-muted-foreground">
+        <CardDescription className="text-base md:text-lg font-medium text-center text-muted-foreground">
           Please sign up for your account
         </CardDescription>
-        <CardContent>
+        <CardContent className="px-0 pt-6">
           <form onSubmit={handleSignUp} className="flex flex-col gap-4">
             {error && (
               <div className="bg-destructive/10 text-destructive text-sm rounded-md p-2">
@@ -124,7 +128,11 @@ export default function SignUp() {
               />
             </div> */}
             <div className="mt-4">
-              <FormButton text="Sign Up" loadingText="Signing up ..." />
+              <FormButton
+                text="Sign Up"
+                loadingText="Signing up ..."
+                isLoading={isLoading}
+              />
             </div>
           </form>
         </CardContent>

@@ -21,8 +21,10 @@ export default function SignIn() {
     password: "",
   });
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   async function handleSignIn(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const result = await signIn.email({
         email: formData.email,
@@ -37,18 +39,20 @@ export default function SignIn() {
       }
     } catch (err) {
       setError("An unexpected error occurred during sign in.");
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
-    <section className="relative container max-w-7xl min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center overflow-hidden">
-      <Card className="p-8 min-w-md">
+    <section className="relative container max-w-7xl min-h-[calc(100vh-4rem)] mx-auto flex flex-col items-center justify-center overflow-hidden px-4 py-8">
+      <Card className="w-full max-w-md p-8 shadow-lg">
         <CardTitle className="text-2xl font-bold text-center">
           Sign In
         </CardTitle>
-        <CardDescription className="text-lg font-medium text-center text-muted-foreground">
+        <CardDescription className="text-base md:text-lg font-medium text-center text-muted-foreground">
           Please sign in to your account
         </CardDescription>
-        <CardContent>
+        <CardContent className="px-0 pt-6">
           <form onSubmit={handleSignIn} className="flex flex-col gap-4">
             {error && (
               <div className="bg-destructive/10 text-destructive text-sm rounded-md p-2">
@@ -80,7 +84,11 @@ export default function SignIn() {
               />
             </div>
             <div className="mt-4">
-              <FormButton text="Sign In" loadingText="Signing in ..." />
+              <FormButton
+                text="Sign In"
+                loadingText="Signing in ..."
+                isLoading={isLoading}
+              />
             </div>
           </form>
         </CardContent>

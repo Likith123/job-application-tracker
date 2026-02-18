@@ -22,21 +22,21 @@ export default async function JobsSectionWithStatus({
   jobs = jobs.slice(0, 5);
 
   return (
-    <div className="w-80 h-100 flex items-center justify-start border-2 border-primary/5 bg-primary/2 rounded-lg flex-col overflow-hidden shadow-sm hover:scale-102 transition-transform duration-200">
-      <div className="w-full px-4 py-6 flex items-center justify-between bg-linear-to-b from-primary/60 to-primary/70">
-        <span className="font-bold">{label}</span>
+    <div className="w-full max-w-87.5 md:w-80 h-100 flex items-center justify-start border-2 border-primary/5 bg-primary/2 rounded-lg flex-col overflow-hidden shadow-sm hover:scale-102 transition-transform duration-200">
+      <div className="w-full p-4 md:py-6 flex items-center justify-between bg-linear-to-b from-primary/60 to-primary/70">
+        <span className="font-bold text-sm md:text-base">{label}</span>
         <span>
           <Link
             href={`/jobs/${status}`}
-            className={`text-foreground group underline flex items-center justify-center gap-2`}
+            className={`text-foreground group underline flex items-center justify-center gap-2 text-xs md:text-sm`}
           >
             View All{" "}
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </span>
       </div>
       {jobs.length == 0 ? (
-        <div className="w-full m-auto flex items-center justify-center">
+        <div className="w-full m-auto flex items-center justify-center text-sm text-muted-foreground">
           No {label} found
         </div>
       ) : (

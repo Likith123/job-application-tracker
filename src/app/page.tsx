@@ -33,7 +33,7 @@ export default function Home() {
           src="/og-image.png"
           alt="Hero Image"
           width={1000}
-          height={80}
+          height={600}
           priority
         />
       </div>
