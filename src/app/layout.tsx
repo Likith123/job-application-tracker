@@ -1,5 +1,6 @@
 import Navbar from "@/components/nav-bar";
 import { JobProvider } from "@/context/refresh-context";
+import { getSession } from "@/lib/auth/auth";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
@@ -17,11 +18,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Tracker",
-    default: "Tracker - Job Application Tracker",
+    template: "%s | JoAT",
+    default: "JoAT : Job Application Tracker",
   },
   description:
-    "Tracker: Track job applications, manage interviews, organize offers. Stay organized and land your dream job with real-time updates.",
+    "JoAT: Track job applications, manage interviews, organize offers. Stay organized and land your dream job with real-time updates.",
   keywords: [
     "job tracker",
     "jobs tracker",
@@ -29,6 +30,9 @@ export const metadata: Metadata = {
     "store job",
     "job search",
     "interview tracker",
+    "joat",
+    "JoAT",
+    "JOAT",
   ],
   authors: [
     {
@@ -37,7 +41,7 @@ export const metadata: Metadata = {
     },
   ],
   creator: "Likith Naga Sai Adusumalli",
-  publisher: "Tracker",
+  publisher: "JoAT",
   robots: {
     index: true,
     follow: true,
@@ -50,17 +54,17 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Tracker - Job Application Tracker",
+    title: "JoAT : Job Application Tracker",
     description:
       "Track job applications in real-time. Stay organized throughout your job search.",
     url: "https://jobat.vercel.app",
-    siteName: "Tracker",
+    siteName: "JoAT",
     images: [
       {
         url: "https://jobat.vercel.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Tracker - Job Application Tracker",
+        alt: "JoAT : Job Application Tracker",
       },
     ],
     locale: "en_IN",
@@ -68,7 +72,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tracker - Job Application Tracker",
+    title: "JoAT : Job Application Tracker",
     description:
       "Real-time job application tracking. Stay organized and land interviews.",
     images: ["https://jobat.vercel.app/og-image.png"],
@@ -84,18 +88,19 @@ export const viewport: Viewport = {
   themeColor: "#00be6a",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getSession();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <JobProvider>
-          <Navbar />
+          <Navbar session={session} />
           <main>{children}</main>
           <Toaster
             position="top-right"

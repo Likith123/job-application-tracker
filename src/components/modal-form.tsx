@@ -19,7 +19,7 @@ import {
   jobTypeOptions,
   statusOptions,
 } from "@/lib/data";
-import { JobDataType } from "@/lib/types";
+import { JobDataType, ResType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -28,10 +28,6 @@ import toast from "react-hot-toast";
 import { SelectField, TextInputField } from "./form-fields";
 import DatePicker from "./ui/DatePicker";
 import { Textarea } from "./ui/textarea";
-type resType = {
-  success: boolean;
-  msg: string;
-};
 
 export default function ModalForm({
   mode,
@@ -71,7 +67,7 @@ export default function ModalForm({
       jobData,
       job,
       isDirty,
-    )) as resType;
+    )) as ResType;
     if (success) {
       toast.success(msg);
       refresh?.();

@@ -1,5 +1,6 @@
 "use client";
 import { signOut } from "@/lib/auth/auth-client";
+import { SessionType } from "@/lib/types";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import {
@@ -10,33 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
-type Session = {
-  user: {
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    email: string;
-    emailVerified: boolean;
-    name: string;
-    image?: string | null | undefined;
-    firstName: string;
-    lastName: string;
-  };
-  session: {
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    userId: string;
-    expiresAt: Date;
-    token: string;
-    ipAddress?: string | null | undefined;
-    userAgent?: string | null | undefined;
-  };
-};
-
-export default function UserProfile({ session }: { session: Session }) {
+export default function UserProfile({ session }: { session: SessionType }) {
   const router = useRouter();
-  const { firstName, lastName, name, email } = session.user;
+  const { firstName, lastName, name, email } = session?.user ?? {};
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
