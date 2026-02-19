@@ -103,7 +103,7 @@ export default function ModalForm({
           {config.showLabel && config.label}
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-sm md:max-w-xl">
+      <DialogContent className="max-w-sm md:max-w-xl shadow-2xl shadow-popover-foreground/10">
         <form
           onSubmit={(e) => {
             e.preventDefault();

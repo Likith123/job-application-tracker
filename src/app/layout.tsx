@@ -19,20 +19,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     template: "%s | JoAT",
-    default: "JoAT : Job Application Tracker",
+    default: "JoAT : Job Applications Tracker",
   },
   description:
     "JoAT: Track job applications, manage interviews, organize offers. Stay organized and land your dream job with real-time updates.",
   keywords: [
-    "job tracker",
-    "jobs tracker",
-    "job application tracker",
-    "store job",
-    "job search",
-    "interview tracker",
     "joat",
     "JoAT",
     "JOAT",
+    "job tracker",
+    "jobs tracker",
+    "job application tracker",
+    "job applications tracker",
+    "store job",
+    "job search",
+    "interview tracker",
   ],
   authors: [
     {
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "JoAT : Job Application Tracker",
+    title: "JoAT : Your Job Applications Tracker",
     description:
       "Track job applications in real-time. Stay organized throughout your job search.",
     url: "https://jobat.vercel.app",
@@ -64,7 +65,7 @@ export const metadata: Metadata = {
         url: "https://jobat.vercel.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "JoAT : Job Application Tracker",
+        alt: "JoAT : Job Applications Tracker",
       },
     ],
     locale: "en_IN",
@@ -72,7 +73,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "JoAT : Job Application Tracker",
+    title: "JoAT : Your Job Applications Tracker",
     description:
       "Real-time job application tracking. Stay organized and land interviews.",
     images: ["https://jobat.vercel.app/og-image.png"],
