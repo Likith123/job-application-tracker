@@ -18,7 +18,7 @@ export default function Navbar({ session }: { session: SessionType }) {
       </div>
       <div className="flex items-center justify-center gap-2 md:gap-6">
         {session?.user ? (
-          <div className="flex items-center justify-center gap-2 md:gap-6">
+          <div className="flex items-center justify-center gap-4 md:gap-6">
             <NavLinks />
             <ModalForm mode="add" job={emptyJob} refresh={refresh} />
             <UserProfile session={session} />
