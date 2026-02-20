@@ -8,12 +8,15 @@ export default async function Dashboard() {
   return (
     <section className="container max-w-7xl mx-auto py-12 min-h-[calc(100vh-4rem)] flex gap-16 flex-wrap justify-center">
       <header className="text-center w-full flex flex-col items-center gap-4">
-        <h1 className="text-4xl font-bold bg-linear-to-tr from-primary/50 via-primary/75 to-primary text-transparent bg-clip-text">
-          Welcome, {session?.user?.firstName},
+        <h1 className="text-4xl font-bold text-secondary-foreground/75 tracking-wide">
+          Welcome,{" "}
+          <span className="block md:inline bg-linear-to-tr from-primary/50 via-primary/75 to-primary text-transparent bg-clip-text">
+            {session?.user?.firstName}
+          </span>
         </h1>
         <p className="text-lg md:text-xl font-semibold text-muted-foreground">
           Track and manage your job applications
-          <br className="md:hidden"/> at{" "}
+          <br className="md:hidden" /> at{" "}
           <span className="text-primary/80 font-bold italic">one place.</span>
         </p>
       </header>
