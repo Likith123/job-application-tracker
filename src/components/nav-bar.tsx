@@ -16,7 +16,7 @@ export default function Navbar({ session }: { session: SessionType }) {
           JoAT.
         </Link>
       </div>
-      <div className="flex items-center justify-center gap-2 md:gap-6">
+      <div className="flex items-center justify-center gap-4 md:gap-6">
         {session?.user ? (
           <div className="flex items-center justify-center gap-4 md:gap-6">
             <NavLinks />
