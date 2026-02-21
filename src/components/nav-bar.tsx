@@ -33,7 +33,7 @@ export default function Navbar({ session }: { session: SessionType }) {
             </Link>
             <Link
               href="/sign-up"
-              className="px-2 md:px-4 py-1.5 bg-primary/90 text-foreground text-sm md:text-base font-semibold text-center rounded-md hover:bg-primary transition-colors"
+              className="px-2 md:px-4 py-1.5 bg-primary/80 text-foreground text-sm md:text-base font-semibold text-center rounded-md hover:bg-primary/90 transition-colors"
             >
               Sign Up
             </Link>

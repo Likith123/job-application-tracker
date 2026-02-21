@@ -22,7 +22,7 @@ export default async function JobsSectionWithStatus({
   jobs = jobs.slice(0, 5);
 
   return (
-    <div className="w-full max-w-87.5 md:w-80 h-100 flex items-center justify-start border-2 border-primary/5 bg-primary/2 rounded-lg flex-col overflow-hidden shadow-sm hover:scale-102 transition-transform duration-200">
+    <div className="w-full max-w-87.5 md:w-80 h-100 flex items-center justify-start border border-primary/5 bg-primary/2 rounded-lg flex-col overflow-hidden hover:shadow-lg hover:shadow-popover-foreground/2 hover:scale-102 transition-transform duration-200 hover:perspective-near">
       <div className="w-full p-4 md:py-6 flex items-center justify-between bg-linear-to-b from-primary/60 to-primary/70">
         <span className="font-bold text-sm md:text-base">{label}</span>
         <span>
